@@ -16,7 +16,7 @@ vim.opt.relativenumber = true
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = ","
 -- add your own keymapping
- lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 -- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 -- unmap a default keymapping
@@ -159,16 +159,7 @@ lvim.lsp.installer.setup.ensure_installed = {
   "sumneko_lua",
   "jsonls",
   "tsserver",
-  -- "dartls", -- should already be installed at the system
 }
--- -- change UI setting of `LspInstallInfo`
--- -- see <https://github.com/williamboman/nvim-lsp-installer#default-configuration>
--- lvim.lsp.installer.setup.ui.check_outdated_servers_on_open = false
--- lvim.lsp.installer.setup.ui.border = "rounded"
--- lvim.lsp.installer.setup.ui.keymaps = {
---     uninstall_server = "d",
---     toggle_server_expand = "o",
--- }
 
 ---@usage disable automatic installation of servers
 lvim.lsp.installer.setup.automatic_installation = false
@@ -235,7 +226,7 @@ linters.setup {
   -- {
   --   command = "codespell",
   --   ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
-  --   filetypes = { "javascript", "typescript" },sdfqqq
+  --   filetypes = { "javascript", "typescript" },
   -- },
 }
 
@@ -256,11 +247,6 @@ lvim.plugins = {
   },
   {
     "tpope/vim-surround",
-
-    -- make sure to change the value of `timeoutlen` if it's not triggering correctly, see https://github.com/tpope/vim-surround/issues/117
-    -- setup = function()
-      --  vim.o.timeoutlen = 500
-    -- end
   },
   {
     "tpope/vim-fugitive",
@@ -281,7 +267,6 @@ lvim.plugins = {
     },
     ft = {"fugitive"}
   },
-  -- Flutter plugin
   {
     "akinsho/flutter-tools.nvim",
     requires = "nvim-lua/plenary.nvim",
@@ -291,19 +276,11 @@ lvim.plugins = {
         fvm = true, -- takes priority over path, uses <workspace>/.fvm/flutter_sdk if enabled
         ui = {
           border = "rounded",
-          -- This determines whether notifications are show with `vim.notify` or with the plugin's custom UI
-          -- please note that this option is eventually going to be deprecated and users will need to
-          -- depend on plugins like `nvim-notify` instead.
           notification_style = "plugin",
         },
         decorations = {
           statusline = {
-            -- set to true to be able use the 'flutter_tools_decorations.app_version' in your statusline
-            -- this will show the current version of the flutter app from the pubspec.yaml file
             app_version = true,
-            -- set to true to be able use the 'flutter_tools_decorations.device' in your statusline
-            -- this will show the currently running device if an application was started with a specific
-            -- device
             device = true,
           },
         },
@@ -341,12 +318,11 @@ lvim.plugins = {
           settings = {
             showTodos = true,
             completeFunctionCalls = true,
-            renameFilesWithClasses = "prompt", -- "always"
+            renameFilesWithClasses = "prompt",
             enableSnippets = true,
             enableSdkFormatter = true,
           },
         },
-
       }
     end
   },
