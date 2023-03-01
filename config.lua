@@ -1,16 +1,14 @@
 --[[
 based on: https://gist.github.com/Antoniozinchenko/b7e1d3679a88ec4f1b3a3bd6e5b44961
 
-Linters should be
-filled in as strings with either
-a global executable or a path to
-an executable
+1. Install and enable some NerdFont
+2. :PackerSync
+3. :checkhealth and fix issues
 ]]
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = true
 lvim.colorscheme = "gruvbox"
 vim.opt.relativenumber = true
--- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
@@ -107,6 +105,9 @@ lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Project
 lvim.builtin.which_key.mappings["F"] = {
   name = "+Flutter",
   c = { "<cmd>Telescope flutter commands<cr>", "Open Flutter Commans" },
+  x = { "<cmd>FlutterLogClear<cr>", "Clear log" },
+  t = { "<cmd>FlutterDevTools<cr>", "Start dev tools" },
+  o = { "<cmd>FlutterOutlineToggle<cr>", "Toggle outline" },
   d = { "<cmd>FlutterDevices<cr>", "Flutter Devices" },
   e = { "<cmd>FlutterEmulators<cr>", "Flutter Emulators" },
   r = { "<cmd>FlutterReload<cr>", "Hot Reload App" },
@@ -123,7 +124,6 @@ lvim.builtin.which_key.mappings["t"] = {
   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
 }
-
 
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
@@ -196,7 +196,7 @@ formatters.setup {
     command = "prettier",
     ---@usage arguments to pass to the formatter
     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
-    extra_args = { "--print-with", "100" },
+    extra_args = { "--print-with", "100", "--single-quote" },
     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
     filetypes = { "typescript", "typescriptreact", 'javascript', 'javascriptreact' },
   },
@@ -289,7 +289,7 @@ lvim.plugins = {
           auto_open = false, -- if true this will open the outline automatically when it is first populated
         },
         debugger = {
-          enabled = false,
+          enabled = true,
           run_via_dap = false,
           register_configurations = function(_)
             local dap = require("dap")
@@ -305,12 +305,12 @@ lvim.plugins = {
         },
         dev_log = {
           enabled = true,
-          -- open_cmd = "tabedit", -- command to use to open the log buffer
+          -- open_cmd = "tabedit",
         },
         lsp = {
           color = { -- show the derived colours for dart variables
-            enabled = true, -- whether or not to highlight color variables at all, only supported on flutter >= 2.10
-            background = false, -- highlight the background
+            enabled = true, 
+            background = true, -- highlight the background
             foreground = false, -- highlight the foreground
             virtual_text = true, -- show the highlight using virtual text
             virtual_text_str = "■", -- the virtual text character to highlight
