@@ -31,6 +31,8 @@ lvim.keys.normal_mode["<leader>-"] = ":split<CR>"
 -- aligh cursor on screen center during scroll
 lvim.keys.normal_mode["<C-d>"] = "<C-d>zz"
 lvim.keys.normal_mode["<C-u>"] = "<C-u>zz"
+lvim.keys.normal_mode["<Tab>"] = ":bnext<CR>"
+lvim.keys.normal_mode["<S-Tab>"] = ":bprev<CR>"
 
 -- NvimTree
 lvim.keys.normal_mode["<leader>i"] = ":NvimTreeToggle<CR>"
