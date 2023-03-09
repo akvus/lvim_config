@@ -158,7 +158,6 @@ lvim.builtin.treesitter.highlight.enable = true
 
 -- -- make sure server will always be installed even if the server is in skipped_servers list
 lvim.lsp.installer.setup.ensure_installed = {
-  "sumneko_lua",
   "jsonls",
   "tsserver",
 }
@@ -239,6 +238,9 @@ lvim.plugins = {
     cmd = "TroubleToggle",
   },
   {
+    "MTDL9/vim-log-highlighting",
+  },
+  {
     "ellisonleao/gruvbox.nvim",
   },
   { 
@@ -291,7 +293,7 @@ lvim.plugins = {
           auto_open = false, -- if true this will open the outline automatically when it is first populated
         },
         debugger = {
-          enabled = true,
+          enabled = false,
           run_via_dap = false,
           register_configurations = function(_)
             local dap = require("dap")
@@ -331,28 +333,6 @@ lvim.plugins = {
  -- Syntax highlight for mdx files: used by Storybook
   { "jxnblk/vim-mdx-js" },
   -- { "github/copilot.vim" },
-  -- tmux navigation support
-  {
-    "aserowy/tmux.nvim",
-    config = function()
-      require("tmux").setup {
-        navigation = {
-          -- cycles to opposite pane while navigating into the border
-          -- cycle_navigation = true,
-
-          -- enables default keybindings (C-hjkl) for normal mode
-          enable_default_keybindings = true,
-
-          -- prevents unzoom tmux when navigating beyond vim border
-          persist_zoom = true,
-        },
-        resize = {
-          -- enables default keybindings (A-hjkl) for normal mode
-          enable_default_keybindings = true,
-        },
-      }
-    end,
-  },
   {
     "glepnir/lspsaga.nvim",
     config = function()
@@ -401,7 +381,6 @@ lvim.plugins = {
   },
   {
     "windwp/nvim-spectre",
-    -- event = "BufRead",
     config = function()
       require("spectre").setup()
     end,
@@ -411,9 +390,6 @@ lvim.plugins = {
     requires = "nvim-lua/plenary.nvim",
     config = function()
       require("todo-comments").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
       }
     end
   }
