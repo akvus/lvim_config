@@ -123,7 +123,7 @@ _G.packer_plugins = {
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
   ["flutter-tools.nvim"] = {
-    config = { "\27LJ\2\n”\1\0\1\5\0\b\0\0156\1\0\0'\3\1\0B\1\2\0029\2\2\1'\4\3\0B\2\2\0019\2\4\0014\3\0\0=\3\5\0026\2\0\0'\4\6\0B\2\2\0029\2\a\2B\2\1\1K\0\1\0\18load_launchjs\19dap.ext.vscode\tdart\19configurations\nTRACE\18set_log_level\bdap\frequire±\4\1\0\5\0\24\0\0276\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\0025\3\a\0005\4\6\0=\4\b\3=\3\t\0025\3\n\0=\3\v\0025\3\f\0003\4\r\0=\4\14\3=\3\15\0025\3\16\0=\3\17\0025\3\19\0005\4\18\0=\4\20\0035\4\21\0=\4\22\3=\3\23\2B\0\2\1K\0\1\0\blsp\rsettings\1\0\5\14showTodos\2\23enableSdkFormatter\2\19enableSnippets\2\27renameFilesWithClasses\vprompt\26completeFunctionCalls\2\ncolor\1\0\0\1\0\5\21virtual_text_str\bâ– \fenabled\2\17virtual_text\2\15background\2\15foreground\1\fdev_log\1\0\1\fenabled\2\rdebugger\28register_configurations\0\1\0\2\fenabled\1\16run_via_dap\1\foutline\1\0\2\ropen_cmd\v30vnew\14auto_open\1\16decorations\15statusline\1\0\0\1\0\2\vdevice\2\16app_version\2\aui\1\0\2\vborder\frounded\23notification_style\vplugin\1\0\1\bfvm\2\nsetup\18flutter-tools\frequire\0" },
+    config = { "\27LJ\2\n”\1\0\1\5\0\b\0\0156\1\0\0'\3\1\0B\1\2\0029\2\2\1'\4\3\0B\2\2\0019\2\4\0014\3\0\0=\3\5\0026\2\0\0'\4\6\0B\2\2\0029\2\a\2B\2\1\1K\0\1\0\18load_launchjs\19dap.ext.vscode\tdart\19configurations\nTRACE\18set_log_level\bdap\frequire±\4\1\0\5\0\24\0\0276\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\0025\3\a\0005\4\6\0=\4\b\3=\3\t\0025\3\n\0=\3\v\0025\3\f\0003\4\r\0=\4\14\3=\3\15\0025\3\16\0=\3\17\0025\3\19\0005\4\18\0=\4\20\0035\4\21\0=\4\22\3=\3\23\2B\0\2\1K\0\1\0\blsp\rsettings\1\0\5\26completeFunctionCalls\2\14showTodos\2\23enableSdkFormatter\2\19enableSnippets\2\27renameFilesWithClasses\vprompt\ncolor\1\0\0\1\0\5\fenabled\2\21virtual_text_str\bâ– \17virtual_text\2\15background\2\15foreground\1\fdev_log\1\0\1\fenabled\2\rdebugger\28register_configurations\0\1\0\2\16run_via_dap\1\fenabled\1\foutline\1\0\2\ropen_cmd\v30vnew\14auto_open\1\16decorations\15statusline\1\0\0\1\0\2\16app_version\2\vdevice\2\aui\1\0\2\23notification_style\vplugin\vborder\frounded\1\0\1\bfvm\2\nsetup\18flutter-tools\frequire\0" },
     loaded = true,
     path = "C:\\Users\\conta\\AppData\\Roaming\\lunarvim\\site\\pack\\packer\\start\\flutter-tools.nvim",
     url = "https://github.com/akinsho/flutter-tools.nvim"
@@ -159,7 +159,7 @@ _G.packer_plugins = {
     url = "https://github.com/christianchiarulli/lir.nvim"
   },
   ["lspsaga.nvim"] = {
-    config = { "\27LJ\2\n«\5\0\0\b\0#\0@6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\4\0005\4\3\0=\4\5\0035\4\6\0=\4\a\0035\4\b\0=\4\t\3B\1\2\0016\1\n\0009\1\v\0019\1\f\1\18\2\1\0'\4\r\0'\5\14\0'\6\15\0005\a\16\0B\2\5\1\18\2\1\0'\4\r\0'\5\17\0'\6\18\0005\a\19\0B\2\5\1\18\2\1\0'\4\r\0'\5\20\0'\6\21\0005\a\22\0B\2\5\1\18\2\1\0'\4\r\0'\5\23\0'\6\24\0005\a\25\0B\2\5\1\18\2\1\0'\4\r\0'\5\26\0'\6\27\0005\a\28\0B\2\5\1\18\2\1\0'\4\r\0'\5\29\0'\6\27\0005\a\30\0B\2\5\1\18\2\1\0'\4\31\0'\5\26\0'\6 \0005\a!\0B\2\5\1\18\2\1\0'\4\31\0'\5\29\0'\6 \0005\a\"\0B\2\5\1K\0\1\0\1\0\1\vsilent\2\1\0\1\vsilent\2.<C-\\><C-n><cmd>Lspsaga close_floaterm<CR>\6t\1\0\1\vsilent\2\bâˆ‚\1\0\1\vsilent\2#<cmd>Lspsaga open_floaterm<CR>\n<A-d>\1\0\1\vsilent\2\31<cmd>Lspsaga hover_doc<CR>\6K\1\0\1\vsilent\2%<cmd>Lspsaga peek_definition<CR>\agd\1\0\1\vsilent\2\28<cmd>Lspsaga rename<CR>\agr\1\0\1\vsilent\2 <cmd>Lspsaga lsp_finder<CR>\agh\6n\bset\vkeymap\bvim\15definition\1\0\1\tedit\t<CR>\vfinder\1\0\1\topen\t<CR>\17move_in_saga\1\0\0\1\0\2\tprev\n<C-k>\tnext\n<C-j>\nsetup\flspsaga\frequire\0" },
+    config = { "\27LJ\2\n«\a\0\0\b\0,\0K6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\4\0005\4\3\0=\4\5\0035\4\6\0=\4\a\0035\4\b\0=\4\t\0035\4\n\0005\5\v\0=\5\f\4=\4\r\0035\4\14\0=\4\15\3B\1\2\0016\1\16\0009\1\17\0019\1\18\1\18\2\1\0'\4\19\0'\5\20\0'\6\21\0005\a\22\0B\2\5\1\18\2\1\0'\4\19\0'\5\23\0'\6\24\0005\a\25\0B\2\5\1\18\2\1\0005\4\26\0'\5\27\0'\6\28\0B\2\4\1\18\2\1\0'\4\19\0'\5\29\0'\6\30\0005\a\31\0B\2\5\1\18\2\1\0'\4\19\0'\5 \0'\6!\0005\a\"\0B\2\5\1\18\2\1\0'\4\19\0'\5#\0'\6$\0005\a%\0B\2\5\1\18\2\1\0'\4\19\0'\5&\0'\6$\0005\a'\0B\2\5\1\18\2\1\0'\4(\0'\5#\0'\6)\0005\a*\0B\2\5\1\18\2\1\0'\4(\0'\5&\0'\6)\0005\a+\0B\2\5\1K\0\1\0\1\0\1\vsilent\2\1\0\1\vsilent\2.<C-\\><C-n><cmd>Lspsaga close_floaterm<CR>\6t\1\0\1\vsilent\2\bâˆ‚\1\0\1\vsilent\2#<cmd>Lspsaga open_floaterm<CR>\n<A-d>\1\0\1\vsilent\2\31<cmd>Lspsaga hover_doc<CR>\6K\1\0\1\vsilent\2%<cmd>Lspsaga peek_definition<CR>\agd!<cmd>Lspsaga code_action<CR>\15<leader>ac\1\3\0\0\6n\6v\1\0\1\vsilent\2\28<cmd>Lspsaga rename<CR>\agr\1\0\1\vsilent\2 <cmd>Lspsaga lsp_finder<CR>\agh\6n\bset\vkeymap\bvim\14lightbulb\1\0\5\18sign_priority\3(\tsign\2\21enable_in_insert\2\17virtual_text\2\venable\1\16code_action\tkeys\1\0\2\tquit\6q\texec\t<CR>\1\0\3\17num_shortcut\2\20extend_gitsigns\2\21show_server_name\1\15definition\1\0\1\tedit\t<CR>\vfinder\1\0\1\topen\t<CR>\17move_in_saga\1\0\0\1\0\2\tprev\n<C-k>\tnext\n<C-j>\nsetup\flspsaga\frequire\0" },
     loaded = true,
     path = "C:\\Users\\conta\\AppData\\Roaming\\lunarvim\\site\\pack\\packer\\start\\lspsaga.nvim",
     url = "https://github.com/glepnir/lspsaga.nvim"
@@ -329,14 +329,6 @@ _G.packer_plugins = {
     path = "C:\\Users\\conta\\AppData\\Roaming\\lunarvim\\site\\pack\\packer\\start\\tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
   },
-  ["trouble.nvim"] = {
-    commands = { "TroubleToggle" },
-    loaded = false,
-    needs_bufread = false,
-    only_cond = false,
-    path = "C:\\Users\\conta\\AppData\\Roaming\\lunarvim\\site\\pack\\packer\\opt\\trouble.nvim",
-    url = "https://github.com/folke/trouble.nvim"
-  },
   ["vim-fugitive"] = {
     commands = { "G", "Git", "Gdiffsplit", "Gread", "Gwrite", "Ggrep", "GMove", "GDelete", "GBrowse", "GRemove", "GRename", "Glgrep", "Gedit" },
     loaded = false,
@@ -415,30 +407,26 @@ if not vim.g.packer_custom_loader_enabled then
   vim.g.packer_custom_loader_enabled = true
 end
 
--- Config for: nvim-navic
-time([[Config for nvim-navic]], true)
-try_loadstring("\27LJ\2\nC\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\26lvim.core.breadcrumbs\frequire\0", "config", "nvim-navic")
-time([[Config for nvim-navic]], false)
--- Config for: mason.nvim
-time([[Config for mason.nvim]], true)
-try_loadstring("\27LJ\2\n=\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\20lvim.core.mason\frequire\0", "config", "mason.nvim")
-time([[Config for mason.nvim]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+try_loadstring("\27LJ\2\nB\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\25lvim.core.treesitter\frequire\0", "config", "nvim-treesitter")
+time([[Config for nvim-treesitter]], false)
 -- Config for: indent-blankline.nvim
 time([[Config for indent-blankline.nvim]], true)
 try_loadstring("\27LJ\2\nC\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\26lvim.core.indentlines\frequire\0", "config", "indent-blankline.nvim")
 time([[Config for indent-blankline.nvim]], false)
--- Config for: lspsaga.nvim
-time([[Config for lspsaga.nvim]], true)
-try_loadstring("\27LJ\2\n«\5\0\0\b\0#\0@6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\4\0005\4\3\0=\4\5\0035\4\6\0=\4\a\0035\4\b\0=\4\t\3B\1\2\0016\1\n\0009\1\v\0019\1\f\1\18\2\1\0'\4\r\0'\5\14\0'\6\15\0005\a\16\0B\2\5\1\18\2\1\0'\4\r\0'\5\17\0'\6\18\0005\a\19\0B\2\5\1\18\2\1\0'\4\r\0'\5\20\0'\6\21\0005\a\22\0B\2\5\1\18\2\1\0'\4\r\0'\5\23\0'\6\24\0005\a\25\0B\2\5\1\18\2\1\0'\4\r\0'\5\26\0'\6\27\0005\a\28\0B\2\5\1\18\2\1\0'\4\r\0'\5\29\0'\6\27\0005\a\30\0B\2\5\1\18\2\1\0'\4\31\0'\5\26\0'\6 \0005\a!\0B\2\5\1\18\2\1\0'\4\31\0'\5\29\0'\6 \0005\a\"\0B\2\5\1K\0\1\0\1\0\1\vsilent\2\1\0\1\vsilent\2.<C-\\><C-n><cmd>Lspsaga close_floaterm<CR>\6t\1\0\1\vsilent\2\bâˆ‚\1\0\1\vsilent\2#<cmd>Lspsaga open_floaterm<CR>\n<A-d>\1\0\1\vsilent\2\31<cmd>Lspsaga hover_doc<CR>\6K\1\0\1\vsilent\2%<cmd>Lspsaga peek_definition<CR>\agd\1\0\1\vsilent\2\28<cmd>Lspsaga rename<CR>\agr\1\0\1\vsilent\2 <cmd>Lspsaga lsp_finder<CR>\agh\6n\bset\vkeymap\bvim\15definition\1\0\1\tedit\t<CR>\vfinder\1\0\1\topen\t<CR>\17move_in_saga\1\0\0\1\0\2\tprev\n<C-k>\tnext\n<C-j>\nsetup\flspsaga\frequire\0", "config", "lspsaga.nvim")
-time([[Config for lspsaga.nvim]], false)
+-- Config for: todo-comments.nvim
+time([[Config for todo-comments.nvim]], true)
+try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18todo-comments\frequire\0", "config", "todo-comments.nvim")
+time([[Config for todo-comments.nvim]], false)
 -- Config for: lir.nvim
 time([[Config for lir.nvim]], true)
 try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\18lvim.core.lir\frequire\0", "config", "lir.nvim")
 time([[Config for lir.nvim]], false)
--- Config for: nvim-spectre
-time([[Config for nvim-spectre]], true)
-try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fspectre\frequire\0", "config", "nvim-spectre")
-time([[Config for nvim-spectre]], false)
+-- Config for: flutter-tools.nvim
+time([[Config for flutter-tools.nvim]], true)
+try_loadstring("\27LJ\2\n”\1\0\1\5\0\b\0\0156\1\0\0'\3\1\0B\1\2\0029\2\2\1'\4\3\0B\2\2\0019\2\4\0014\3\0\0=\3\5\0026\2\0\0'\4\6\0B\2\2\0029\2\a\2B\2\1\1K\0\1\0\18load_launchjs\19dap.ext.vscode\tdart\19configurations\nTRACE\18set_log_level\bdap\frequire±\4\1\0\5\0\24\0\0276\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\0025\3\a\0005\4\6\0=\4\b\3=\3\t\0025\3\n\0=\3\v\0025\3\f\0003\4\r\0=\4\14\3=\3\15\0025\3\16\0=\3\17\0025\3\19\0005\4\18\0=\4\20\0035\4\21\0=\4\22\3=\3\23\2B\0\2\1K\0\1\0\blsp\rsettings\1\0\5\26completeFunctionCalls\2\14showTodos\2\23enableSdkFormatter\2\19enableSnippets\2\27renameFilesWithClasses\vprompt\ncolor\1\0\0\1\0\5\fenabled\2\21virtual_text_str\bâ– \17virtual_text\2\15background\2\15foreground\1\fdev_log\1\0\1\fenabled\2\rdebugger\28register_configurations\0\1\0\2\16run_via_dap\1\fenabled\1\foutline\1\0\2\ropen_cmd\v30vnew\14auto_open\1\16decorations\15statusline\1\0\0\1\0\2\16app_version\2\vdevice\2\aui\1\0\2\23notification_style\vplugin\vborder\frounded\1\0\1\bfvm\2\nsetup\18flutter-tools\frequire\0", "config", "flutter-tools.nvim")
+time([[Config for flutter-tools.nvim]], false)
 -- Config for: alpha-nvim
 time([[Config for alpha-nvim]], true)
 try_loadstring("\27LJ\2\n=\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\20lvim.core.alpha\frequire\0", "config", "alpha-nvim")
@@ -459,59 +447,62 @@ time([[Config for LuaSnip]], false)
 time([[Config for vim-illuminate]], true)
 try_loadstring("\27LJ\2\nB\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\25lvim.core.illuminate\frequire\0", "config", "vim-illuminate")
 time([[Config for vim-illuminate]], false)
--- Config for: flutter-tools.nvim
-time([[Config for flutter-tools.nvim]], true)
-try_loadstring("\27LJ\2\n”\1\0\1\5\0\b\0\0156\1\0\0'\3\1\0B\1\2\0029\2\2\1'\4\3\0B\2\2\0019\2\4\0014\3\0\0=\3\5\0026\2\0\0'\4\6\0B\2\2\0029\2\a\2B\2\1\1K\0\1\0\18load_launchjs\19dap.ext.vscode\tdart\19configurations\nTRACE\18set_log_level\bdap\frequire±\4\1\0\5\0\24\0\0276\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\0025\3\a\0005\4\6\0=\4\b\3=\3\t\0025\3\n\0=\3\v\0025\3\f\0003\4\r\0=\4\14\3=\3\15\0025\3\16\0=\3\17\0025\3\19\0005\4\18\0=\4\20\0035\4\21\0=\4\22\3=\3\23\2B\0\2\1K\0\1\0\blsp\rsettings\1\0\5\14showTodos\2\23enableSdkFormatter\2\19enableSnippets\2\27renameFilesWithClasses\vprompt\26completeFunctionCalls\2\ncolor\1\0\0\1\0\5\21virtual_text_str\bâ– \fenabled\2\17virtual_text\2\15background\2\15foreground\1\fdev_log\1\0\1\fenabled\2\rdebugger\28register_configurations\0\1\0\2\fenabled\1\16run_via_dap\1\foutline\1\0\2\ropen_cmd\v30vnew\14auto_open\1\16decorations\15statusline\1\0\0\1\0\2\vdevice\2\16app_version\2\aui\1\0\2\vborder\frounded\23notification_style\vplugin\1\0\1\bfvm\2\nsetup\18flutter-tools\frequire\0", "config", "flutter-tools.nvim")
-time([[Config for flutter-tools.nvim]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-try_loadstring("\27LJ\2\n`\0\0\3\0\6\0\v6\0\0\0009\0\1\0009\0\2\0\15\0\0\0X\1\5€6\0\3\0'\2\4\0B\0\2\0029\0\5\0B\0\1\1K\0\1\0\nsetup\18lvim.core.cmp\frequire\bcmp\fbuiltin\tlvim\0", "config", "nvim-cmp")
-time([[Config for nvim-cmp]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-try_loadstring("\27LJ\2\nA\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\24lvim.core.telescope\frequire\0", "config", "telescope.nvim")
-time([[Config for telescope.nvim]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-try_loadstring("\27LJ\2\nB\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\25lvim.core.treesitter\frequire\0", "config", "nvim-treesitter")
-time([[Config for nvim-treesitter]], false)
 -- Config for: nvim-autopairs
 time([[Config for nvim-autopairs]], true)
 try_loadstring("\27LJ\2\nA\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\24lvim.core.autopairs\frequire\0", "config", "nvim-autopairs")
 time([[Config for nvim-autopairs]], false)
--- Config for: todo-comments.nvim
-time([[Config for todo-comments.nvim]], true)
-try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18todo-comments\frequire\0", "config", "todo-comments.nvim")
-time([[Config for todo-comments.nvim]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+try_loadstring("\27LJ\2\n`\0\0\3\0\6\0\v6\0\0\0009\0\1\0009\0\2\0\15\0\0\0X\1\5€6\0\3\0'\2\4\0B\0\2\0029\0\5\0B\0\1\1K\0\1\0\nsetup\18lvim.core.cmp\frequire\bcmp\fbuiltin\tlvim\0", "config", "nvim-cmp")
+time([[Config for nvim-cmp]], false)
+-- Config for: lspsaga.nvim
+time([[Config for lspsaga.nvim]], true)
+try_loadstring("\27LJ\2\n«\a\0\0\b\0,\0K6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\4\0005\4\3\0=\4\5\0035\4\6\0=\4\a\0035\4\b\0=\4\t\0035\4\n\0005\5\v\0=\5\f\4=\4\r\0035\4\14\0=\4\15\3B\1\2\0016\1\16\0009\1\17\0019\1\18\1\18\2\1\0'\4\19\0'\5\20\0'\6\21\0005\a\22\0B\2\5\1\18\2\1\0'\4\19\0'\5\23\0'\6\24\0005\a\25\0B\2\5\1\18\2\1\0005\4\26\0'\5\27\0'\6\28\0B\2\4\1\18\2\1\0'\4\19\0'\5\29\0'\6\30\0005\a\31\0B\2\5\1\18\2\1\0'\4\19\0'\5 \0'\6!\0005\a\"\0B\2\5\1\18\2\1\0'\4\19\0'\5#\0'\6$\0005\a%\0B\2\5\1\18\2\1\0'\4\19\0'\5&\0'\6$\0005\a'\0B\2\5\1\18\2\1\0'\4(\0'\5#\0'\6)\0005\a*\0B\2\5\1\18\2\1\0'\4(\0'\5&\0'\6)\0005\a+\0B\2\5\1K\0\1\0\1\0\1\vsilent\2\1\0\1\vsilent\2.<C-\\><C-n><cmd>Lspsaga close_floaterm<CR>\6t\1\0\1\vsilent\2\bâˆ‚\1\0\1\vsilent\2#<cmd>Lspsaga open_floaterm<CR>\n<A-d>\1\0\1\vsilent\2\31<cmd>Lspsaga hover_doc<CR>\6K\1\0\1\vsilent\2%<cmd>Lspsaga peek_definition<CR>\agd!<cmd>Lspsaga code_action<CR>\15<leader>ac\1\3\0\0\6n\6v\1\0\1\vsilent\2\28<cmd>Lspsaga rename<CR>\agr\1\0\1\vsilent\2 <cmd>Lspsaga lsp_finder<CR>\agh\6n\bset\vkeymap\bvim\14lightbulb\1\0\5\18sign_priority\3(\tsign\2\21enable_in_insert\2\17virtual_text\2\venable\1\16code_action\tkeys\1\0\2\tquit\6q\texec\t<CR>\1\0\3\17num_shortcut\2\20extend_gitsigns\2\21show_server_name\1\15definition\1\0\1\tedit\t<CR>\vfinder\1\0\1\topen\t<CR>\17move_in_saga\1\0\0\1\0\2\tprev\n<C-k>\tnext\n<C-j>\nsetup\flspsaga\frequire\0", "config", "lspsaga.nvim")
+time([[Config for lspsaga.nvim]], false)
 -- Config for: lualine.nvim
 time([[Config for lualine.nvim]], true)
 try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\22lvim.core.lualine\frequire\0", "config", "lualine.nvim")
 time([[Config for lualine.nvim]], false)
--- Config for: nvim-tree.lua
-time([[Config for nvim-tree.lua]], true)
-try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\23lvim.core.nvimtree\frequire\0", "config", "nvim-tree.lua")
-time([[Config for nvim-tree.lua]], false)
+-- Config for: mason.nvim
+time([[Config for mason.nvim]], true)
+try_loadstring("\27LJ\2\n=\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\20lvim.core.mason\frequire\0", "config", "mason.nvim")
+time([[Config for mason.nvim]], false)
 -- Config for: nvim-dap-ui
 time([[Config for nvim-dap-ui]], true)
 try_loadstring("\27LJ\2\n>\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\rsetup_ui\18lvim.core.dap\frequire\0", "config", "nvim-dap-ui")
 time([[Config for nvim-dap-ui]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\23lvim.core.nvimtree\frequire\0", "config", "nvim-tree.lua")
+time([[Config for nvim-tree.lua]], false)
+-- Config for: nvim-spectre
+time([[Config for nvim-spectre]], true)
+try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fspectre\frequire\0", "config", "nvim-spectre")
+time([[Config for nvim-spectre]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+try_loadstring("\27LJ\2\nA\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\24lvim.core.telescope\frequire\0", "config", "telescope.nvim")
+time([[Config for telescope.nvim]], false)
+-- Config for: nvim-navic
+time([[Config for nvim-navic]], true)
+try_loadstring("\27LJ\2\nC\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\26lvim.core.breadcrumbs\frequire\0", "config", "nvim-navic")
+time([[Config for nvim-navic]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file GMove lua require("packer.load")({'vim-fugitive'}, { cmd = "GMove", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file GDelete lua require("packer.load")({'vim-fugitive'}, { cmd = "GDelete", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Git lua require("packer.load")({'vim-fugitive'}, { cmd = "Git", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file G lua require("packer.load")({'vim-fugitive'}, { cmd = "G", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file GRemove lua require("packer.load")({'vim-fugitive'}, { cmd = "GRemove", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file GRename lua require("packer.load")({'vim-fugitive'}, { cmd = "GRename", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Glgrep lua require("packer.load")({'vim-fugitive'}, { cmd = "Glgrep", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Gedit lua require("packer.load")({'vim-fugitive'}, { cmd = "Gedit", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file TroubleToggle lua require("packer.load")({'trouble.nvim'}, { cmd = "TroubleToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file GRemove lua require("packer.load")({'vim-fugitive'}, { cmd = "GRemove", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file G lua require("packer.load")({'vim-fugitive'}, { cmd = "G", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file GBrowse lua require("packer.load")({'vim-fugitive'}, { cmd = "GBrowse", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Gdiffsplit lua require("packer.load")({'vim-fugitive'}, { cmd = "Gdiffsplit", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Gread lua require("packer.load")({'vim-fugitive'}, { cmd = "Gread", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Gwrite lua require("packer.load")({'vim-fugitive'}, { cmd = "Gwrite", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Ggrep lua require("packer.load")({'vim-fugitive'}, { cmd = "Ggrep", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file GMove lua require("packer.load")({'vim-fugitive'}, { cmd = "GMove", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 time([[Defining lazy-load commands]], false)
 
 vim.cmd [[augroup packer_load_aucmds]]
@@ -523,7 +514,7 @@ time([[Defining lazy-load filetype autocommands]], false)
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
 vim.cmd [[au BufReadPost * ++once lua require("packer.load")({'nvim-ts-context-commentstring'}, { event = "BufReadPost *" }, _G.packer_plugins)]]
-vim.cmd [[au BufWinEnter * ++once lua require("packer.load")({'which-key.nvim', 'toggleterm.nvim', 'bufferline.nvim'}, { event = "BufWinEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au BufWinEnter * ++once lua require("packer.load")({'toggleterm.nvim', 'bufferline.nvim', 'which-key.nvim'}, { event = "BufWinEnter *" }, _G.packer_plugins)]]
 vim.cmd [[au BufRead * ++once lua require("packer.load")({'gitsigns.nvim', 'Comment.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")

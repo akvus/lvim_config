@@ -45,7 +45,7 @@ lvim.keys.normal_mode["<leader>-"] = ":vert res -10<CR>"
 -- LSP
 lvim.keys.normal_mode["g["] = ":lua vim.diagnostic.goto_next()<CR>"
 lvim.keys.normal_mode["g]"] = ":lua vim.diagnostic.goto_prev()<CR>"
-lvim.keys.normal_mode['<leader>ac'] = "<cmd>lua vim.lsp.buf.code_action()<CR>"
+-- lvim.keys.normal_mode['<leader>ac'] = "<cmd>lua vim.lsp.buf.code_action()<CR>"
 lvim.keys.normal_mode['<leader>aw'] = "<cmd>lua vim.lsp.buf.code_action()<CR>"
 
 -- Telescope 
@@ -233,10 +233,10 @@ linters.setup {
 
 -- Additional Plugins
 lvim.plugins = {
-  {
-    "folke/trouble.nvim",
-    cmd = "TroubleToggle",
-  },
+--  {
+--   "folke/trouble.nvim",
+--    cmd = "TroubleToggle",
+--  },
   {
     "MTDL9/vim-log-highlighting",
   },
@@ -349,6 +349,23 @@ lvim.plugins = {
         definition = {
           edit = "<CR>",
         },
+        code_action = {
+          num_shortcut = true,
+          show_server_name = false,
+          extend_gitsigns = true,
+          keys = {
+            -- string | table type
+            quit = "q",
+            exec = "<CR>",
+          },
+        },
+        lightbulb = {
+          enable = false,
+          enable_in_insert = true,
+          sign = true,
+          sign_priority = 40,
+          virtual_text = true,
+        },
       })
 
       local keymap = vim.keymap.set
@@ -361,6 +378,8 @@ lvim.plugins = {
 
       -- Rename
       keymap("n", "gr", "<cmd>Lspsaga rename<CR>", { silent = true })
+
+      keymap({"n","v"}, "<leader>ac", "<cmd>Lspsaga code_action<CR>")
 
       -- Peek Definition
       -- you can edit the definition file in this flaotwindow
@@ -393,21 +412,7 @@ lvim.plugins = {
       }
     end
   }
-
 }
-
--- copilot additional configs
--- vim.g.copilot_no_tab_map = true
--- vim.g.copilot_assume_mapped = true
--- vim.g.copilot_tab_fallback = ""
--- lvim.builtin.cmp.mapping["<Tab>"] = function(fallback)
---   local copilot_keys = vim.fn["copilot#Accept"]()
---   if copilot_keys ~= "" then
---     vim.api.nvim_feedkeys(copilot_keys, "i", true)
---   else
---     fallback()
---   end
--- end
 
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
@@ -422,14 +427,6 @@ vim.filetype.add {
     arb = 'json',
   }
 }
-
--- vim.api.nvim_create_autocmd("FileType", {
---   pattern = "zsh",
---   callback = function()
---     -- let treesitter use bash highlight for zsh files as well
---     require("nvim-treesitter.highlight").attach(0, "bash")
---   end,
--- })
 
 require("packer").init({
 	max_jobs = 10,
