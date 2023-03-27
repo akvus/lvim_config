@@ -1,8 +1,23 @@
+-- TODO try the fmta() function for readability
 return {
-  s("testfile", { 
-    t "import 'package:flutter_test/flutter_test.dart';/n" ,
-    t "import 'package:mocktail/mocktail.dart/n';",
-    t "/n",
-    t "void main() {group('', () {});}/n",
-  }),
+  s(
+    {
+      trig = "testfile", 
+      dscr = "Test file",
+    },
+    { 
+      t({ 
+        "import 'package:flutter_test/flutter_test.dart';" ,
+        "import 'package:mocktail/mocktail.dart';",
+        "",
+        "void main() {group('$",
+      }),
+      i(1),
+      t({
+        "', () {",
+        "",
+        "});}",
+      }),
+    }
+  )
 }
