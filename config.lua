@@ -325,6 +325,7 @@ lvim.plugins = {
             renameFilesWithClasses = "prompt",
             enableSnippets = true,
             enableSdkFormatter = true,
+            lineLength = 80,
           },
         },
       }
@@ -332,7 +333,7 @@ lvim.plugins = {
   },
  -- Syntax highlight for mdx files: used by Storybook
   { "jxnblk/vim-mdx-js" },
-  -- { "github/copilot.vim" },
+  { "github/copilot.vim" },
   {
     "glepnir/lspsaga.nvim",
     config = function()
@@ -413,6 +414,19 @@ lvim.plugins = {
     end
   }
 }
+
+-- copilot config
+vim.g.copilot_no_tab_map = true
+vim.g.copilot_assume_mapped = true
+vim.g.copilot_tab_fallback = ""
+lvim.builtin.cmp.mapping["<Tab>"] = function(fallback)
+  local copilot_keys = vim.fn["copilot#Accept"]()
+  if copilot_keys ~= "" then
+    vim.api.nvim_feedkeys(copilot_keys, "i", true)
+  else
+    fallback()
+  end
+end
 
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
