@@ -48,7 +48,7 @@ lvim.keys.normal_mode["g]"] = ":lua vim.diagnostic.goto_prev()<CR>"
 -- lvim.keys.normal_mode['<leader>ac'] = "<cmd>lua vim.lsp.buf.code_action()<CR>"
 lvim.keys.normal_mode['<leader>aw'] = "<cmd>lua vim.lsp.buf.code_action()<CR>"
 
--- Telescope 
+-- Telescope
 lvim.keys.normal_mode['<leader>T'] = ":Telescope<CR>"
 lvim.keys.normal_mode['<leader>F'] = ":lua require'telescope.builtin'.live_grep{}<CR>"
 lvim.keys.normal_mode['<leader>H'] = ":lua require'telescope.builtin'.oldfiles{}<CR>"
@@ -233,17 +233,17 @@ linters.setup {
 
 -- Additional Plugins
 lvim.plugins = {
---  {
---   "folke/trouble.nvim",
---    cmd = "TroubleToggle",
---  },
+  --  {
+  --   "folke/trouble.nvim",
+  --    cmd = "TroubleToggle",
+  --  },
   {
     "MTDL9/vim-log-highlighting",
   },
   {
     "ellisonleao/gruvbox.nvim",
   },
-  { 
+  {
     "mg979/vim-visual-multi",
   },
   {
@@ -254,7 +254,7 @@ lvim.plugins = {
   },
   {
     "tpope/vim-fugitive",
-      cmd = {
+    cmd = {
       "G",
       "Git",
       "Gdiffsplit",
@@ -269,7 +269,7 @@ lvim.plugins = {
       "Glgrep",
       "Gedit"
     },
-    ft = {"fugitive"}
+    ft = { "fugitive" }
   },
   {
     "akinsho/flutter-tools.nvim",
@@ -313,7 +313,7 @@ lvim.plugins = {
         },
         lsp = {
           color = { -- show the derived colours for dart variables
-            enabled = true, 
+            enabled = true,
             background = true, -- highlight the background
             foreground = false, -- highlight the foreground
             virtual_text = true, -- show the highlight using virtual text
@@ -331,7 +331,7 @@ lvim.plugins = {
       }
     end
   },
- -- Syntax highlight for mdx files: used by Storybook
+  -- Syntax highlight for mdx files: used by Storybook
   { "jxnblk/vim-mdx-js" },
   { "github/copilot.vim" },
   {
@@ -380,7 +380,7 @@ lvim.plugins = {
       -- Rename
       keymap("n", "gr", "<cmd>Lspsaga rename<CR>", { silent = true })
 
-      keymap({"n","v"}, "<leader>ac", "<cmd>Lspsaga code_action<CR>")
+      keymap({ "n", "v" }, "<leader>ac", "<cmd>Lspsaga code_action<CR>")
 
       -- Peek Definition
       -- you can edit the definition file in this flaotwindow
@@ -443,5 +443,5 @@ vim.filetype.add {
 }
 
 require("packer").init({
-	max_jobs = 10,
+  max_jobs = 10,
 })
