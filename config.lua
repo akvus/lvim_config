@@ -39,6 +39,15 @@ lvim.keys.normal_mode["g]"] = ":lua vim.diagnostic.goto_prev()<CR>"
 lvim.keys.normal_mode["[g"] = ":lua vim.diagnostic.goto_next()<CR>"
 lvim.keys.normal_mode["]g"] = ":lua vim.diagnostic.goto_prev()<CR>"
 lvim.keys.normal_mode['<leader>aw'] = "<cmd>lua vim.lsp.buf.code_action()<CR>"
+-- CMP
+lvim.builtin.cmp.sources = { 
+    -- Copilot Source
+    { name = "copilot", group_index = 2 },
+    -- Other Sources
+    { name = "nvim_lsp", group_index = 2 },
+    { name = "path", group_index = 2 },
+    { name = "luasnip", group_index = 2 },
+}
 -- Telescope
 lvim.keys.normal_mode['<leader>T'] = ":Telescope<CR>"
 lvim.keys.normal_mode['<leader>D'] = ":lua require'telescope.builtin'.live_grep{}<CR>"
@@ -271,6 +280,14 @@ lvim.plugins = {
   -- Syntax highlight for mdx files: used by Storybook
   { "jxnblk/vim-mdx-js" },
   { "github/copilot.vim" },
+  { "zbirenbaum/copilot.lua" },
+  {
+    "zbirenbaum/copilot-cmp",
+    after = { "copilot.lua" },
+    config = function ()
+      require("copilot_cmp").setup()
+    end
+  },
   {
     "glepnir/lspsaga.nvim",
     config = function()
