@@ -5,22 +5,16 @@ based on: https://gist.github.com/Antoniozinchenko/b7e1d3679a88ec4f1b3a3bd6e5b44
 2. :PackerSync
 3. :checkhealth and fix issues
 ]]
+
+-- SETTINGS
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = true
 lvim.colorscheme = "gruvbox"
 vim.opt.relativenumber = true
--- lvim.use_icons = false
-
--- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = ","
--- add your own keymapping
+
+-- KEY MAPPINGS
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
--- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
--- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
--- unmap a default keymapping
--- vim.keymap.del("n", "<C-Up>")
--- override a default keymapping
--- lvim.keys.normal_mode["<C-q>"] = ":q<cr>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
 lvim.keys.insert_mode["jj"] = "<ESC>"
 -- delete single character without copying into register
 lvim.keys.normal_mode["x"] = '"_x'
@@ -33,52 +27,22 @@ lvim.keys.normal_mode["<C-d>"] = "<C-d>zz"
 lvim.keys.normal_mode["<C-u>"] = "<C-u>zz"
 lvim.keys.normal_mode["<Tab>"] = ":bnext<CR>"
 lvim.keys.normal_mode["<S-Tab>"] = ":bprev<CR>"
-
 -- NvimTree
 lvim.keys.normal_mode["<leader>i"] = ":NvimTreeToggle<CR>"
 lvim.keys.normal_mode["<F3>"] = ":NvimTreeFindFile<CR>"
-
 -- Resize splits
 lvim.keys.normal_mode["<leader>="] = ":vert res +10<CR>"
 lvim.keys.normal_mode["<leader>-"] = ":vert res -10<CR>"
-
 -- LSP
 lvim.keys.normal_mode["g["] = ":lua vim.diagnostic.goto_next()<CR>"
 lvim.keys.normal_mode["g]"] = ":lua vim.diagnostic.goto_prev()<CR>"
--- lvim.keys.normal_mode['<leader>ac'] = "<cmd>lua vim.lsp.buf.code_action()<CR>"
+lvim.keys.normal_mode["[g"] = ":lua vim.diagnostic.goto_next()<CR>"
+lvim.keys.normal_mode["]g"] = ":lua vim.diagnostic.goto_prev()<CR>"
 lvim.keys.normal_mode['<leader>aw'] = "<cmd>lua vim.lsp.buf.code_action()<CR>"
-
 -- Telescope
 lvim.keys.normal_mode['<leader>T'] = ":Telescope<CR>"
-lvim.keys.normal_mode['<leader>F'] = ":lua require'telescope.builtin'.live_grep{}<CR>"
+lvim.keys.normal_mode['<leader>D'] = ":lua require'telescope.builtin'.live_grep{}<CR>"
 lvim.keys.normal_mode['<leader>H'] = ":lua require'telescope.builtin'.oldfiles{}<CR>"
-
--- Fugitive
-lvim.builtin.which_key.mappings["g"] = {
-  name = "+Git",
-  p = { "<cmd>G push<cr>", "Git push" },
-  l = { "<cmd>G pull<cr>", "Git pull" },
-  f = { "<cmd>G fetch<cr>", "Git fetch" },
-  a = { "<cmd>G add .<cr>", "Git add all" },
-  s = { "<cmd>G status<cr>", "Git status" },
-  d = { "<cmd>G diff<cr>", "Git diff" },
-}
-
--- Flutter
-lvim.keys.normal_mode['<leader>cl'] = ":FlutterLogClear<CR>"
-
--- nvim spectre (find and replace)
-lvim.keys.normal_mode["<leader>S"] = "<cmd>lua require('spectre').open()<CR>"
-
--- search current word
-lvim.keys.normal_mode["<leader>Sw"] = "r<cmd>lua equire('spectre').open_visual({select_word=true})<CR>"
-lvim.keys.normal_mode["<leader>SS"] = "<esc>:lua require('spectre').open_visual()<CR>"
---  search in current file
-lvim.keys.normal_mode["<leader>Sf"] = "viw:lua require('spectre').open_file_search()<cr>"
--- run command :Spectre
-
--- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
--- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
 local _, actions = pcall(require, "telescope.actions")
 lvim.builtin.telescope.defaults.mappings = {
   -- for input mode
@@ -94,15 +58,29 @@ lvim.builtin.telescope.defaults.mappings = {
     ["<C-k>"] = actions.move_selection_previous,
   },
 }
-
 lvim.builtin.telescope.on_config_done = function(telescope)
   telescope.load_extension "flutter"
 end
+-- Fugitive
+lvim.builtin.which_key.mappings["g"] = {
+  name = "+Git",
+  p = { "<cmd>G push<cr>", "Git push" },
+  l = { "<cmd>G pull<cr>", "Git pull" },
+  f = { "<cmd>G fetch<cr>", "Git fetch" },
+  a = { "<cmd>G add .<cr>", "Git add all" },
+  s = { "<cmd>G status<cr>", "Git status" },
+  d = { "<cmd>G diff<cr>", "Git diff" },
+}
+-- nvim spectre (find and replace)
+lvim.keys.normal_mode["<leader>S"] = "<cmd>lua require('spectre').open()<CR>"
+-- search current word
+lvim.keys.normal_mode["<leader>Sw"] = "r<cmd>lua equire('spectre').open_visual({select_word=true})<CR>"
+lvim.keys.normal_mode["<leader>SS"] = "<esc>:lua require('spectre').open_visual()<CR>"
+--  search in current file
+lvim.keys.normal_mode["<leader>Sf"] = "viw:lua require('spectre').open_file_search()<cr>"
 
--- lvim.builtin.theme.options.dim_inactive = true
--- lvim.builtin.theme.options.style = "storm"
-
--- Use which-key to add extra bindings with the leader-key prefix
+-- Flutter
+lvim.keys.normal_mode['<leader>cl'] = ":FlutterLogClear<CR>"
 lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
 lvim.builtin.which_key.mappings["F"] = {
   name = "+Flutter",
@@ -117,17 +95,8 @@ lvim.builtin.which_key.mappings["F"] = {
   q = { "<cmd>FlutterQuit<cr>", "Quit running application" },
   v = { "<cmd>Telescope flutter fvm<cr>", "Flutter version" },
 }
-lvim.builtin.which_key.mappings["t"] = {
-  name = "+Trouble",
-  r = { "<cmd>Trouble lsp_references<cr>", "References" },
-  f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
-  d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
-  q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
-  l = { "<cmd>Trouble loclist<cr>", "LocationList" },
-  w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
-}
 
--- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
+-- PLUGIN SETTINGS
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
@@ -155,8 +124,6 @@ lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enable = true
 
 -- generic LSP settings
-
--- -- make sure server will always be installed even if the server is in skipped_servers list
 lvim.lsp.installer.setup.ensure_installed = {
   "jsonls",
   "tsserver",
@@ -164,28 +131,6 @@ lvim.lsp.installer.setup.ensure_installed = {
 
 ---@usage disable automatic installation of servers
 lvim.lsp.installer.setup.automatic_installation = false
-
--- ---configure a server manually. !!Requires `:LvimCacheReset` to take effect!!
--- ---see the full default list `:lua print(vim.inspect(lvim.lsp.automatic_configuration.skipped_servers))`
--- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
--- local opts = {} -- check the lspconfig documentation for a list of all possible options
--- require("lvim.lsp.manager").setup("pyright", opts)
-
--- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. !!Requires `:LvimCacheReset` to take effect!!
--- ---`:LvimInfo` lists which server(s) are skipped for the current filetype
--- lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
---   return server ~= "emmet_ls"
--- end, lvim.lsp.automatic_configuration.skipped_servers)
-
--- -- you can set a custom on_attach function that will be used for all the language servers
--- -- See <https://github.com/neovim/nvim-lspconfig#keybindings-and-completion>
--- lvim.lsp.on_attach_callback = function(client, bufnr)
---   local function buf_set_option(...)
---     vim.api.nvim_buf_set_option(bufnr, ...)
---   end
---   --Enable completion triggered by <c-x><c-o>
---   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
--- end
 
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require "lvim.lsp.null-ls.formatters"
@@ -210,13 +155,6 @@ luasnip.filetype_extend("dart", { "flutter" })
 -- set additional linters
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
-  -- {
-  --   -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
-  --   command = "shellcheck",
-  --   ---@usage arguments to pass to the formatter
-  --   -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
-  --   extra_args = { "--severity", "warning" },
-  -- },
   {
     command = "eslint_d",
     filetypes = {
@@ -224,19 +162,10 @@ linters.setup {
       "typescript", "typescriptreact"
     }
   }
-  -- {
-  --   command = "codespell",
-  --   ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
-  --   filetypes = { "javascript", "typescript" },
-  -- },
 }
 
 -- Additional Plugins
 lvim.plugins = {
-  --  {
-  --   "folke/trouble.nvim",
-  --    cmd = "TroubleToggle",
-  --  },
   {
     "MTDL9/vim-log-highlighting",
   },
@@ -245,6 +174,14 @@ lvim.plugins = {
   },
   {
     "mg979/vim-visual-multi",
+  },
+  {
+    "nvim-neotest/neotest",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "antoinemadec/FixCursorHold.nvim"
+    }
   },
   {
     "vim-test/vim-test",
@@ -428,7 +365,6 @@ lvim.builtin.cmp.mapping["<C-w>"] = function(fallback)
   end
 end
 
-
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "*.json", "*.jsonc", "*.arb" },
@@ -445,3 +381,4 @@ vim.filetype.add {
 require("packer").init({
   max_jobs = 10,
 })
+
