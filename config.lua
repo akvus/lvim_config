@@ -79,6 +79,7 @@ lvim.builtin.which_key.mappings["g"] = {
   a = { "<cmd>G add .<cr>", "Git add all" },
   s = { "<cmd>G status<cr>", "Git status" },
   d = { "<cmd>G diff<cr>", "Git diff" },
+  x = { "<cmd>! git add . && git commit -m Update && git push<cr>", "Git add/commit/push at once" },
 }
 -- nvim spectre (find and replace)
 lvim.keys.normal_mode["<leader>S"] = "<cmd>lua require('spectre').open()<CR>"
@@ -103,6 +104,7 @@ lvim.builtin.which_key.mappings["F"] = {
   R = { "<cmd>FlutterRestart<cr>", "Hot Restart app" },
   q = { "<cmd>FlutterQuit<cr>", "Quit running application" },
   v = { "<cmd>Telescope flutter fvm<cr>", "Flutter version" },
+  g = { "<cmd>ter cd apo_guide && flutter run --flavor development -t lib/main_development.dart<cr>", "Run GEDISA dev" },
 }
 
 -- PLUGIN SETTINGS
@@ -189,8 +191,21 @@ lvim.plugins = {
     requires = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
-      "antoinemadec/FixCursorHold.nvim"
-    }
+      "antoinemadec/FixCursorHold.nvim",
+      'sidlatau/neotest-dart',
+    },
+    config = function()
+      require('neotest').setup({
+          adapters = {
+            require('neotest-dart') {
+                 command = 'flutter', -- Command being used to run tests. Defaults to `flutter`
+                                      -- Change it to `fvm flutter` if using FVM
+                                      -- change it to `dart` for Dart only tests
+                 use_lsp = true       -- When set Flutter outline information is used when constructing test name.
+              },
+          }
+        })
+      end
   },
   {
     "vim-test/vim-test",
@@ -277,10 +292,15 @@ lvim.plugins = {
       }
     end
   },
-  -- Syntax highlight for mdx files: used by Storybook
-  { "jxnblk/vim-mdx-js" },
   { "github/copilot.vim" },
-  { "zbirenbaum/copilot.lua" },
+  { 
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({})
+    end,
+  },
   {
     "zbirenbaum/copilot-cmp",
     after = { "copilot.lua" },
