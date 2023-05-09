@@ -5,7 +5,6 @@ based on: https://gist.github.com/Antoniozinchenko/b7e1d3679a88ec4f1b3a3bd6e5b44
 2. :PackerSync
 3. :checkhealth and fix issues
 ]]
-
 -- SETTINGS
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = true
@@ -40,13 +39,13 @@ lvim.keys.normal_mode["[g"] = ":lua vim.diagnostic.goto_next()<CR>"
 lvim.keys.normal_mode["]g"] = ":lua vim.diagnostic.goto_prev()<CR>"
 lvim.keys.normal_mode['<leader>aw'] = "<cmd>lua vim.lsp.buf.code_action()<CR>"
 -- CMP
-lvim.builtin.cmp.sources = { 
-    -- Copilot Source
-    { name = "copilot", group_index = 2 },
-    -- Other Sources
-    { name = "nvim_lsp", group_index = 2 },
-    { name = "path", group_index = 2 },
-    { name = "luasnip", group_index = 2 },
+lvim.builtin.cmp.sources = {
+  -- Copilot Source
+  { name = "copilot",  group_index = 2 },
+  -- Other Sources
+  { name = "nvim_lsp", group_index = 2 },
+  { name = "path",     group_index = 2 },
+  { name = "luasnip",  group_index = 2 },
 }
 -- Telescope
 lvim.keys.normal_mode['<leader>T'] = ":Telescope<CR>"
@@ -105,6 +104,10 @@ lvim.builtin.which_key.mappings["F"] = {
   q = { "<cmd>FlutterQuit<cr>", "Quit running application" },
   v = { "<cmd>Telescope flutter fvm<cr>", "Flutter version" },
   g = { "<cmd>ter cd apo_guide && flutter run --flavor development -t lib/main_development.dart<cr>", "Run GEDISA dev" },
+  a = { "<cmd>FlutterRun<cr>", "Run, no flavors" },
+  D = { "<cmd>FlutterRun --flavor development -t lib/main_development.dart<cr>", "Run development" },
+  S = { "<cmd>FlutterRun --flavor staging -t lib/main_staging.dart<cr>", "Run staging" },
+  P = { "<cmd>FlutterRun --flavor production -t lib/main_production.dart<cr>", "Run production" },
 }
 
 -- PLUGIN SETTINGS
@@ -196,16 +199,16 @@ lvim.plugins = {
     },
     config = function()
       require('neotest').setup({
-          adapters = {
-            require('neotest-dart') {
-                 command = 'flutter', -- Command being used to run tests. Defaults to `flutter`
-                                      -- Change it to `fvm flutter` if using FVM
-                                      -- change it to `dart` for Dart only tests
-                 use_lsp = true       -- When set Flutter outline information is used when constructing test name.
-              },
-          }
-        })
-      end
+        adapters = {
+          require('neotest-dart') {
+            command = 'flutter', -- Command being used to run tests. Defaults to `flutter`
+            -- Change it to `fvm flutter` if using FVM
+            -- change it to `dart` for Dart only tests
+            use_lsp = true -- When set Flutter outline information is used when constructing test name.
+          },
+        }
+      })
+    end
   },
   {
     "vim-test/vim-test",
@@ -293,7 +296,7 @@ lvim.plugins = {
     end
   },
   { "github/copilot.vim" },
-  { 
+  {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     event = "InsertEnter",
@@ -304,7 +307,7 @@ lvim.plugins = {
   {
     "zbirenbaum/copilot-cmp",
     after = { "copilot.lua" },
-    config = function ()
+    config = function()
       require("copilot_cmp").setup()
     end
   },
@@ -418,4 +421,3 @@ vim.filetype.add {
 require("packer").init({
   max_jobs = 10,
 })
-
