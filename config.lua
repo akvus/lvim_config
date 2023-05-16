@@ -201,7 +201,7 @@ lvim.plugins = {
       require('neotest').setup({
         adapters = {
           require('neotest-dart') {
-            command = 'flutter', -- Command being used to run tests. Defaults to `flutter`
+            command = 'fvm flutter', -- Command being used to run tests. Defaults to `flutter`
             -- Change it to `fvm flutter` if using FVM
             -- change it to `dart` for Dart only tests
             use_lsp = true -- When set Flutter outline information is used when constructing test name.
@@ -351,8 +351,12 @@ lvim.plugins = {
       -- Lsp finder find the symbol definition implement reference
       -- if there is no implement it will hide
       -- when you use action in finder like open vsplit then you can
-      -- use <C-t> to jump back
+      -- use <C-t> to jump back>
       keymap("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
+
+      keymap("n", "<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<CR>")
+      keymap("n", "<leader>sw", "<cmd>Lspsaga show_workspace_diagnostics<CR>")
+      keymap("n", "<leader>sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>")
 
       -- Rename
       keymap("n", "gr", "<cmd>Lspsaga rename<CR>", { silent = true })
