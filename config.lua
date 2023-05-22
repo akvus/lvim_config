@@ -93,21 +93,22 @@ lvim.keys.normal_mode['<leader>cl'] = ":FlutterLogClear<CR>"
 lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
 lvim.builtin.which_key.mappings["F"] = {
   name = "+Flutter",
+  a = { "<cmd>FlutterRun<cr>", "Run, no flavors" },
+  b = { "<cmd>ter flutter pub run build_runner build -d<cr>", "Run build runner" },
   c = { "<cmd>Telescope flutter commands<cr>", "Open Flutter Commans" },
-  x = { "<cmd>FlutterLogClear<cr>", "Clear log" },
-  t = { "<cmd>FlutterDevTools<cr>", "Start dev tools" },
-  o = { "<cmd>FlutterOutlineToggle<cr>", "Toggle outline" },
   d = { "<cmd>FlutterDevices<cr>", "Flutter Devices" },
+  D = { "<cmd>FlutterRun --flavor development -t lib/main_development.dart<cr>", "Run development" },
   e = { "<cmd>FlutterEmulators<cr>", "Flutter Emulators" },
+  g = { "<cmd>ter cd apo_guide && flutter run --flavor development -t lib/main_development.dart<cr>", "Run GEDISA dev" },
+  o = { "<cmd>FlutterOutlineToggle<cr>", "Toggle outline" },
+  P = { "<cmd>FlutterRun --flavor production -t lib/main_production.dart<cr>", "Run production" },
   r = { "<cmd>FlutterReload<cr>", "Hot Reload App" },
   R = { "<cmd>FlutterRestart<cr>", "Hot Restart app" },
+  S = { "<cmd>FlutterRun --flavor staging -t lib/main_staging.dart<cr>", "Run staging" },
+  t = { "<cmd>FlutterDevTools<cr>", "Start dev tools" },
   q = { "<cmd>FlutterQuit<cr>", "Quit running application" },
   v = { "<cmd>Telescope flutter fvm<cr>", "Flutter version" },
-  g = { "<cmd>ter cd apo_guide && flutter run --flavor development -t lib/main_development.dart<cr>", "Run GEDISA dev" },
-  a = { "<cmd>FlutterRun<cr>", "Run, no flavors" },
-  D = { "<cmd>FlutterRun --flavor development -t lib/main_development.dart<cr>", "Run development" },
-  S = { "<cmd>FlutterRun --flavor staging -t lib/main_staging.dart<cr>", "Run staging" },
-  P = { "<cmd>FlutterRun --flavor production -t lib/main_production.dart<cr>", "Run production" },
+  x = { "<cmd>FlutterLogClear<cr>", "Clear log" },
 }
 
 -- PLUGIN SETTINGS
