@@ -5,6 +5,15 @@ based on: https://gist.github.com/Antoniozinchenko/b7e1d3679a88ec4f1b3a3bd6e5b44
 2. :PackerSync
 3. :checkhealth and fix issues
 ]]
+local packer = require('packer')
+
+packer.init({
+  max_jobs = 10,
+  git = {
+    clone_timeout = 10, -- timeout in seconds
+  },
+})
+
 -- SETTINGS
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = true
