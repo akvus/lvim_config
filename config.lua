@@ -4,6 +4,8 @@ based on: https://gist.github.com/Antoniozinchenko/b7e1d3679a88ec4f1b3a3bd6e5b44
 1. Install and enable some NerdFont
 2. :PackerSync
 3. :checkhealth and fix issues
+
+Remove all branches but master PowerShell:  git branch -D  @(git branch | select-string -NotMatch "master" | Foreach {$_.Line.Trim()})
 ]]
 local packer = require('packer')
 
@@ -108,7 +110,6 @@ lvim.builtin.which_key.mappings["F"] = {
   d = { "<cmd>FlutterDevices<cr>", "Flutter Devices" },
   D = { "<cmd>FlutterRun --flavor development -t lib/main_development.dart<cr>", "Run development" },
   e = { "<cmd>FlutterEmulators<cr>", "Flutter Emulators" },
-  g = { "<cmd>ter cd apo_guide && flutter run --flavor development -t lib/main_development.dart<cr>", "Run GEDISA dev" },
   o = { "<cmd>FlutterOutlineToggle<cr>", "Toggle outline" },
   P = { "<cmd>FlutterRun --flavor production -t lib/main_production.dart<cr>", "Run production" },
   r = { "<cmd>FlutterReload<cr>", "Hot Reload App" },
@@ -118,6 +119,23 @@ lvim.builtin.which_key.mappings["F"] = {
   q = { "<cmd>FlutterQuit<cr>", "Quit running application" },
   v = { "<cmd>Telescope flutter fvm<cr>", "Flutter version" },
   x = { "<cmd>FlutterLogClear<cr>", "Clear log" },
+}
+
+lvim.builtin.which_key.mappings["G"] = {
+  d = { "<cmd>ter cd apo_guide && fvm flutter run --flavor development -t lib/main_development.dart<cr>", "Run GEDISA dev" },
+  t = { "<cmd>ter cd apo_guide && fvm dart format . && fvm flutter analyze lib test && fvm flutter test<cr>", "Test GEDISA" },
+  b = { "<cmd>ter cd apo_guide && fvm flutter pub run build_runner build -d<cr>", "Build GEDISA" },
+  g = { "<cmd>ter cd apo_guide && fvm flutter pub get<cr>", "Pub get" },
+}
+
+lvim.builtin.which_key.mappings["t"] = {
+  name = "+Trouble",
+  r = { "<cmd>Trouble lsp_references<cr>", "References" },
+  f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
+  d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
+  q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
+  l = { "<cmd>Trouble loclist<cr>", "LocationList" },
+  w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
 }
 
 -- PLUGIN SETTINGS
@@ -136,7 +154,6 @@ lvim.builtin.treesitter.ensure_installed = {
   "lua",
   "typescript",
   "tsx",
-  "css",
   "yaml",
   "dart",
   "ruby",
@@ -192,6 +209,10 @@ linters.setup {
 lvim.plugins = {
   {
     "MTDL9/vim-log-highlighting",
+  },
+  {
+    "folke/trouble.nvim",
+    cmd = "TroubleToggle",
   },
   {
     "ellisonleao/gruvbox.nvim",
