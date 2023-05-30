@@ -210,10 +210,10 @@ lvim.plugins = {
   {
     "MTDL9/vim-log-highlighting",
   },
-  {
-    "folke/trouble.nvim",
-    cmd = "TroubleToggle",
-  },
+ -- {
+ --   "folke/trouble.nvim",
+ --   cmd = "TroubleToggle",
+ -- },
   {
     "ellisonleao/gruvbox.nvim",
   },
