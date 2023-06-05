@@ -6,22 +6,55 @@ based on: https://gist.github.com/Antoniozinchenko/b7e1d3679a88ec4f1b3a3bd6e5b44
 3. :checkhealth and fix issues
 
 Remove all branches but master PowerShell:  git branch -D  @(git branch | select-string -NotMatch "master" | Foreach {$_.Line.Trim()})
-]]
-local packer = require('packer')
 
-packer.init({
-  max_jobs = 10,
-  git = {
-    clone_timeout = 10, -- timeout in seconds
+C:\Users\conta\AppData\Local\lvim
+C:\Users\conta\AppData\Roaming\lunarvim
+
+]]
+
+-- Defaults that came with LunarVim 1.3
+-- Enable powershell as your default shell
+vim.opt.shell = "pwsh.exe -NoLogo"
+vim.opt.shellcmdflag =
+"-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+vim.cmd [[
+		let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+		let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+		set shellquote= shellxquote=
+  ]]
+
+-- Set a compatible clipboard manager
+vim.g.clipboard = {
+  copy = {
+    ["+"] = "win32yank.exe -i --crlf",
+    ["*"] = "win32yank.exe -i --crlf",
   },
-})
+  paste = {
+    ["+"] = "win32yank.exe -o --lf",
+    ["*"] = "win32yank.exe -o --lf",
+  },
+}
 
 -- SETTINGS
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = true
-lvim.colorscheme = "gruvbox"
+--lvim.colorscheme = "gruvbox"
 vim.opt.relativenumber = true
 lvim.leader = ","
+
+-- Set what files make a directory root of a project
+lvim.builtin.project.patterns = { "pubspec.yaml", ">Projects", ".git" } -- defaults include other VCSs, Makefile, package.json
+
+-- nvim-tree
+require("nvim-tree").setup({
+  sort_by = "case_sensitive",
+  view = {
+    width = 40,
+  },
+  renderer = {
+    group_empty = true,
+  },
+})
 
 -- KEY MAPPINGS
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
@@ -122,10 +155,14 @@ lvim.builtin.which_key.mappings["F"] = {
 }
 
 lvim.builtin.which_key.mappings["G"] = {
-  d = { "<cmd>ter cd apo_guide && fvm flutter run --flavor development -t lib/main_development.dart<cr>", "Run GEDISA dev" },
-  t = { "<cmd>ter cd apo_guide && fvm dart format . && fvm flutter analyze lib test && fvm flutter test<cr>", "Test GEDISA" },
-  b = { "<cmd>ter cd apo_guide && fvm flutter pub run build_runner build -d<cr>", "Build GEDISA" },
-  g = { "<cmd>ter cd apo_guide && fvm flutter pub get<cr>", "Pub get" },
+  d = { "<cmd>ter fvm flutter run --flavor development -t lib/main_development.dart<cr>",
+    "Run GEDISA dev" },
+  s = { "<cmd>ter fvm flutter run --flavor staging -t lib/main_staging.dart<cr>",
+    "Run GEDISA dev" },
+  t = { "<cmd>ter fvm dart format . && fvm flutter analyze lib test && fvm flutter test<cr>",
+    "Test GEDISA" },
+  b = { "<cmd>ter fvm flutter pub run build_runner build -d<cr>", "Build GEDISA" },
+  g = { "<cmd>ter fvm flutter pub get<cr>", "Pub get" },
 }
 
 lvim.builtin.which_key.mappings["t"] = {
@@ -210,24 +247,23 @@ lvim.plugins = {
   {
     "MTDL9/vim-log-highlighting",
   },
- -- {
- --   "folke/trouble.nvim",
- --   cmd = "TroubleToggle",
- -- },
+  --[[
   {
-    "ellisonleao/gruvbox.nvim",
+    "folke/trouble.nvim",
+    cmd = "TroubleToggle",
   },
+ ]]
   {
     "mg979/vim-visual-multi",
   },
   {
+    'sidlatau/neotest-dart',
+  },
+  {
+    "antoinemadec/FixCursorHold.nvim",
+  },
+  {
     "nvim-neotest/neotest",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      "antoinemadec/FixCursorHold.nvim",
-      'sidlatau/neotest-dart',
-    },
     config = function()
       require('neotest').setup({
         adapters = {
@@ -268,7 +304,6 @@ lvim.plugins = {
   },
   {
     "akinsho/flutter-tools.nvim",
-    requires = "nvim-lua/plenary.nvim",
     config = function()
       require('flutter-tools').setup {
         -- flutter_path = "C:/Users/conta/flutter/bin/flutter.bat",
@@ -285,7 +320,7 @@ lvim.plugins = {
         },
         outline = {
           open_cmd = "30vnew", -- command to use to open the outline buffer
-          auto_open = false, -- if true this will open the outline automatically when it is first populated
+          auto_open = false,   -- if true this will open the outline automatically when it is first populated
         },
         debugger = {
           enabled = false,
@@ -307,11 +342,12 @@ lvim.plugins = {
           -- open_cmd = "tabedit",
         },
         lsp = {
-          color = { -- show the derived colours for dart variables
+          color = {
+            -- show the derived colours for dart variables
             enabled = true,
-            background = true, -- highlight the background
-            foreground = false, -- highlight the foreground
-            virtual_text = true, -- show the highlight using virtual text
+            background = true,      -- highlight the background
+            foreground = false,     -- highlight the foreground
+            virtual_text = true,    -- show the highlight using virtual text
             virtual_text_str = "■", -- the virtual text character to highlight
           },
           settings = {
@@ -344,6 +380,7 @@ lvim.plugins = {
   },
   {
     "glepnir/lspsaga.nvim",
+    event = "LspAttach",
     config = function()
       local saga = require("lspsaga")
 
@@ -358,6 +395,7 @@ lvim.plugins = {
         definition = {
           edit = "<CR>",
         },
+        request_timeout = 3000,
         code_action = {
           num_shortcut = true,
           show_server_name = false,
@@ -419,10 +457,8 @@ lvim.plugins = {
   },
   {
     "folke/todo-comments.nvim",
-    requires = "nvim-lua/plenary.nvim",
     config = function()
-      require("todo-comments").setup {
-      }
+      require("todo-comments").setup {}
     end
   }
 }
@@ -452,7 +488,3 @@ vim.filetype.add {
     arb = 'json',
   }
 }
-
-require("packer").init({
-  max_jobs = 10,
-})
