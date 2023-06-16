@@ -38,12 +38,12 @@ vim.g.clipboard = {
 -- SETTINGS
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = true
---lvim.colorscheme = "gruvbox"
 vim.opt.relativenumber = true
 lvim.leader = ","
 
 -- Set what files make a directory root of a project
-lvim.builtin.project.patterns = { "pubspec.yaml", ">Projects", ".git" } -- defaults include other VCSs, Makefile, package.json
+-- defaults include other VCSs, Makefile, package.json
+lvim.builtin.project.patterns = { ">Projects", ".git", "pubspec.yaml" }
 
 -- nvim-tree
 require("nvim-tree").setup({
@@ -175,6 +175,16 @@ lvim.builtin.which_key.mappings["t"] = {
   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
 }
 
+lvim.builtin.which_key.mappings["n"] = {
+  name = "+neotest",
+  n = { "<cmd>lua require('neotest').run.run()<cr>", "Nearest" },
+  f = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", "File" },
+  d = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", "Debug nearest" },
+  o = { "<cmd>lua require('neotest').output.open({ enter = true })<cr>", "Open output window" },
+  p = { "<cmd>lua require('neotest').output_panel.toggle()<cr>", "Toggle output panel" },
+  s = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Toggle summary panel" },
+}
+
 -- PLUGIN SETTINGS
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
@@ -247,18 +257,20 @@ lvim.plugins = {
   {
     "MTDL9/vim-log-highlighting",
   },
-  --[[
   {
     "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+    },
     cmd = "TroubleToggle",
   },
- ]]
   {
     "mg979/vim-visual-multi",
   },
   {
     'sidlatau/neotest-dart',
   },
+  -- Needed for neotest
   {
     "antoinemadec/FixCursorHold.nvim",
   },
@@ -304,6 +316,7 @@ lvim.plugins = {
   },
   {
     "akinsho/flutter-tools.nvim",
+    lazy = false,
     config = function()
       require('flutter-tools').setup {
         -- flutter_path = "C:/Users/conta/flutter/bin/flutter.bat",
@@ -395,23 +408,13 @@ lvim.plugins = {
         definition = {
           edit = "<CR>",
         },
-        request_timeout = 3000,
-        code_action = {
-          num_shortcut = true,
-          show_server_name = false,
-          extend_gitsigns = true,
-          keys = {
-            -- string | table type
-            quit = "q",
-            exec = "<CR>",
-          },
+        diagnostic = {
+          max_width = 0.8,
+          max_show_width = 0.9,
         },
+        request_timeout = 3000,
         lightbulb = {
           enable = false,
-          enable_in_insert = true,
-          sign = true,
-          sign_priority = 40,
-          virtual_text = true,
         },
       })
 
@@ -482,6 +485,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   -- enable wrap mode for json files only
   command = "setlocal wrap",
 })
+
 -- Flutter .arb files should be considered as json files
 vim.filetype.add {
   extension = {
