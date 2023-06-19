@@ -71,8 +71,8 @@ lvim.keys.normal_mode["<C-u>"] = "<C-u>zz"
 lvim.keys.normal_mode["<Tab>"] = ":bnext<CR>"
 lvim.keys.normal_mode["<S-Tab>"] = ":bprev<CR>"
 -- NvimTree
-lvim.keys.normal_mode["<leader>i"] = ":NvimTreeToggle<CR>"
-lvim.keys.normal_mode["<F3>"] = ":NvimTreeFindFile<CR>"
+lvim.keys.normal_mode["<leader>i"] = ":NvimTreeFindFile<CR>"
+lvim.keys.normal_mode["<leader>I"] = ":NvimTreeClose<CR>"
 -- Resize splits
 lvim.keys.normal_mode["<leader>="] = ":vert res +10<CR>"
 lvim.keys.normal_mode["<leader>-"] = ":vert res -10<CR>"
@@ -132,9 +132,9 @@ lvim.keys.normal_mode["<leader>SS"] = "<esc>:lua require('spectre').open_visual(
 --  search in current file
 lvim.keys.normal_mode["<leader>Sf"] = "viw:lua require('spectre').open_file_search()<cr>"
 
--- Flutter
-lvim.keys.normal_mode['<leader>cl'] = ":FlutterLogClear<CR>"
 lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
+
+-- Flutter
 lvim.builtin.which_key.mappings["F"] = {
   name = "+Flutter",
   a = { "<cmd>FlutterRun<cr>", "Run, no flavors" },
@@ -276,14 +276,13 @@ lvim.plugins = {
   },
   {
     "nvim-neotest/neotest",
+    dependencies = { 'sidlatau/neotest-dart' },
     config = function()
       require('neotest').setup({
         adapters = {
           require('neotest-dart') {
-            command = 'fvm flutter', -- Command being used to run tests. Defaults to `flutter`
-            -- Change it to `fvm flutter` if using FVM
-            -- change it to `dart` for Dart only tests
-            use_lsp = true -- When set Flutter outline information is used when constructing test name.
+            command = 'fvm flutter',
+            use_lsp = true,
           },
         }
       })
