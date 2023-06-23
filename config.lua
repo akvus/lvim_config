@@ -155,14 +155,14 @@ lvim.builtin.which_key.mappings["F"] = {
 }
 
 lvim.builtin.which_key.mappings["G"] = {
-  d = { "<cmd>ter fvm flutter run --flavor development -t lib/main_development.dart<cr>",
-    "Run GEDISA dev" },
-  s = { "<cmd>ter fvm flutter run --flavor staging -t lib/main_staging.dart<cr>",
-    "Run GEDISA dev" },
-  t = { "<cmd>ter fvm dart format . && fvm flutter analyze lib test && fvm flutter test<cr>",
-    "Test GEDISA" },
-  b = { "<cmd>ter fvm flutter pub run build_runner build -d<cr>", "Build GEDISA" },
+  d = { "<cmd>ter fvm flutter run --flavor development -t lib/main_development.dart<cr>", "Run dev" },
+  s = { "<cmd>ter fvm flutter run --flavor staging -t lib/main_staging.dart<cr>", "Run dev" },
+  t = { "<cmd>ter fvm dart format . && fvm flutter analyze lib test && fvm flutter test<cr>", "Test" },
+  b = { "<cmd>ter fvm flutter pub run build_runner build -d<cr>", "Build" },
   g = { "<cmd>ter fvm flutter pub get<cr>", "Pub get" },
+  c = {
+    "<cmd>ter very_good test --coverage --exclude-coverage 'lib/{**/*.g.dart, gen/**/*.dart, firebase_options_*.dart}' --min-coverage 100<cr>",
+    "Run tests with coverage check" },
 }
 
 lvim.builtin.which_key.mappings["t"] = {
@@ -374,7 +374,6 @@ lvim.plugins = {
       }
     end
   },
-  { "github/copilot.vim" },
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
