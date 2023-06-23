@@ -270,10 +270,6 @@ lvim.plugins = {
   {
     'sidlatau/neotest-dart',
   },
-  -- Needed for neotest
-  {
-    "antoinemadec/FixCursorHold.nvim",
-  },
   {
     "nvim-neotest/neotest",
     dependencies = { 'sidlatau/neotest-dart' },
@@ -318,8 +314,8 @@ lvim.plugins = {
     lazy = false,
     config = function()
       require('flutter-tools').setup {
-        -- flutter_path = "C:/Users/conta/flutter/bin/flutter.bat",
-        fvm = true, -- takes priority over path, uses <workspace>/.fvm/flutter_sdk if enabled
+        flutter_path = ".fvm/flutter_sdk/bin/flutter.bat",
+        -- fvm = true, -- takes priority over path, uses <workspace>/.fvm/flutter_sdk if enabled
         ui = {
           border = "rounded",
           notification_style = "plugin",
