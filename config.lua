@@ -205,7 +205,6 @@ lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
-  "c",
   "javascript",
   "json",
   "lua",
@@ -213,7 +212,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "tsx",
   "yaml",
   "dart",
-  "ruby",
+  "kotlin",
   "markdown",
   "markdown_inline",
 }
@@ -435,9 +434,9 @@ lvim.plugins = {
             accept = "<C-w>",
             accept_word = false,
             accept_line = false,
-            next = "<M-]>",
-            prev = "<M-[>",
-            dismiss = "<C-]>",
+            next = "<C-[>",
+            prev = "<C-]>",
+            dismiss = "<C-d>",
           },
         },
       })
