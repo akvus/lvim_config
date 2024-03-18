@@ -266,6 +266,11 @@ lvim.plugins = {
   {
     "MTDL9/vim-log-highlighting",
   },
+  -- I don't use it, but thanks to this dart LSP stick around, otherwise it goes into a lot of fucking issues
+  {
+    "glepnir/lspsaga.nvim",
+    event = "LspAttach",
+  },
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
