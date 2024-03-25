@@ -83,6 +83,11 @@ lvim.keys.normal_mode["g]"] = ":lua vim.diagnostic.goto_prev()<CR>"
 lvim.keys.normal_mode["[g"] = ":lua vim.diagnostic.goto_next()<CR>"
 lvim.keys.normal_mode["]g"] = ":lua vim.diagnostic.goto_prev()<CR>"
 lvim.keys.normal_mode['<leader>aw'] = "<cmd>lua vim.lsp.buf.code_action()<CR>"
+lvim.keys.normal_mode['K'] = "<cmd>lua vim.lsp.buf.hover()<CR>"
+lvim.keys.normal_mode['gi'] = "<cmd>lua vim.lsp.buf.implementation()<CR>"
+lvim.keys.normal_mode['gd'] = "<cmd>lua vim.lsp.buf.definition()<CR>"
+lvim.keys.normal_mode['gh'] = "<cmd>lua vim.lsp.buf.definition()<CR>"
+lvim.keys.normal_mode['gr'] = "<cmd>lua vim.lsp.buf.rename()<CR>"
 -- CMP
 lvim.builtin.cmp.sources = {
   { name = "nvim_lsp", group_index = 2 },
@@ -143,7 +148,7 @@ lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Project
 lvim.builtin.which_key.mappings["F"] = {
   name = "+Flutter",
   a = { "<cmd>FlutterRun<cr>", "Run, no flavors" },
-  b = { "<cmd>ter flutter pub run build_runner build -d<cr>", "Run build runner" },
+  b = { "<cmd>ter fvm flutter pub run build_runner build -d<cr>", "Run build runner" },
   c = { "<cmd>Telescope flutter commands<cr>", "Open Flutter Commans" },
   d = { "<cmd>FlutterDevices<cr>", "Flutter Devices" },
   D = { "<cmd>FlutterRun --flavor development -t lib/main_development.dart<cr>", "Run development" },
@@ -153,6 +158,7 @@ lvim.builtin.which_key.mappings["F"] = {
   r = { "<cmd>FlutterReload<cr>", "Hot Reload App" },
   R = { "<cmd>FlutterRestart<cr>", "Hot Restart app" },
   S = { "<cmd>FlutterRun --flavor staging -t lib/main_staging.dart<cr>", "Run staging" },
+  SR = { "<cmd>FlutterRun --release --flavor staging -t lib/main_staging.dart<cr>", "Run staging release" },
   t = { "<cmd>FlutterDevTools<cr>", "Start dev tools" },
   q = { "<cmd>FlutterQuit<cr>", "Quit running application" },
   v = { "<cmd>Telescope flutter fvm<cr>", "Flutter version" },
@@ -163,6 +169,7 @@ lvim.builtin.which_key.mappings["G"] = {
   d = { "<cmd>ter fvm flutter run --flavor development -t lib/main_development.dart<cr>", "Run dev" },
   p = { "<cmd>ter fvm flutter run --flavor production -t lib/main_production.dart<cr>", "Run prod" },
   s = { "<cmd>ter fvm flutter run --flavor staging -t lib/main_staging.dart<cr>", "Run dev" },
+  S = { "<cmd>ter fvm flutter run --release --flavor staging -t lib/main_staging.dart<cr>", "Run stg release" },
   t = { "<cmd>ter fvm dart format . && fvm flutter analyze lib test && fvm flutter test<cr>", "Test" },
   b = { "<cmd>ter fvm flutter pub run build_runner build -d<cr>", "Build" },
   g = { "<cmd>ter fvm flutter pub get<cr>", "Pub get" },
@@ -174,11 +181,13 @@ lvim.builtin.which_key.mappings["G"] = {
 lvim.builtin.which_key.mappings["t"] = {
   name = "+Trouble",
   r = { "<cmd>Trouble lsp_references<cr>", "References" },
+  i = { "<cmd>Trouble lsp_implementations<cr>", "Implementations" },
   f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
+  t = { "<cmd>Trouble lsp_type_definitions<cr>", "Type Definitions" },
   d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
+  w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
   q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
-  w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
 }
 
 lvim.builtin.which_key.mappings["n"] = {
@@ -201,7 +210,6 @@ lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
-  "c",
   "javascript",
   "json",
   "lua",
@@ -209,7 +217,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "tsx",
   "yaml",
   "dart",
-  "ruby",
+  "kotlin",
   "markdown",
   "markdown_inline",
 }
@@ -263,10 +271,69 @@ lvim.plugins = {
   {
     "MTDL9/vim-log-highlighting",
   },
+  -- I don't use it, but thanks to this dart LSP stick around, otherwise it goes into a lot of fucking issues
+  {
+    "glepnir/lspsaga.nvim",
+    event = "LspAttach",
+  },
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
+      position = "bottom",            -- position of the list can be: bottom, top, left, right
+      height = 10,                    -- height of the trouble list when position is top or bottom
+      width = 50,                     -- width of the list when position is left or right
+      icons = true,                   -- use devicons for filenames
+      mode = "workspace_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
+      severity = nil,                 -- nil (ALL) or vim.diagnostic.severity.ERROR | WARN | INFO | HINT
+      fold_open = "",              -- icon used for open folds
+      fold_closed = "",            -- icon used for closed folds
+      group = true,                   -- group results by file
+      padding = true,                 -- add an extra new line on top of the list
+      cycle_results = true,           -- cycle item list when reaching beginning or end of list
+      action_keys = {
+        -- key mappings for actions in the trouble list
+        -- map to {} to remove a mapping, for example:
+        -- close = {},
+        close = "q",                                                                        -- close the list
+        cancel = "<esc>",                                                                   -- cancel the preview and get back to your last window / buffer / cursor
+        refresh = "r",                                                                      -- manually refresh
+        jump = { "<cr>", "<tab>", "<2-leftmouse>" },                                        -- jump to the diagnostic or open / close folds
+        open_split = { "<c-x>" },                                                           -- open buffer in new split
+        open_vsplit = { "<c-v>" },                                                          -- open buffer in new vsplit
+        open_tab = { "<c-t>" },                                                             -- open buffer in new tab
+        jump_close = { "o" },                                                               -- jump to the diagnostic and close the list
+        toggle_mode = "m",                                                                  -- toggle between "workspace" and "document" diagnostics mode
+        switch_severity = "s",                                                              -- switch "diagnostics" severity filter level to HINT / INFO / WARN / ERROR
+        toggle_preview = "P",                                                               -- toggle auto_preview
+        hover = "K",                                                                        -- opens a small popup with the full multiline message
+        preview = "p",                                                                      -- preview the diagnostic location
+        open_code_href = "c",                                                               -- if present, open a URI with more information about the diagnostic error
+        close_folds = { "zM", "zm" },                                                       -- close all folds
+        open_folds = { "zR", "zr" },                                                        -- open all folds
+        toggle_fold = { "zA", "za" },                                                       -- toggle fold of current file
+        previous = "k",                                                                     -- previous item
+        next = "j",                                                                         -- next item
+        help = "?"                                                                          -- help menu
+      },
+      multiline = true,                                                                     -- render multi-line messages
+      indent_lines = true,                                                                  -- add an indent guide below the fold icons
+      win_config = { border = "single" },                                                   -- window configuration for floating windows. See |nvim_open_win()|.
+      auto_open = true,                                                                     -- automatically open the list when you have diagnostics
+      auto_close = true,                                                                    -- automatically close the list when you have no diagnostics
+      auto_preview = true,                                                                  -- automatically preview the location of the diagnostic. <esc> to close preview and go back to last window
+      auto_fold = false,                                                                    -- automatically fold a file trouble list at creation
+      auto_jump = { "lsp_definitions" },                                                    -- for the given modes, automatically jump if there is only a single result
+      include_declaration = { "lsp_references", "lsp_implementations", "lsp_definitions" }, -- for the given modes, include the declaration of the current symbol in the results
+      signs = {
+        -- icons / text used for a diagnostic
+        error = "",
+        warning = "",
+        hint = "",
+        information = "",
+        other = "",
+      },
+      use_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
     },
     cmd = "TroubleToggle",
   },
@@ -346,6 +413,7 @@ lvim.plugins = {
         },
         debugger = {
           enabled = false,
+<<<<<<< HEAD
           run_via_dap = false,
           register_configurations = function(_)
             local dap = require("dap")
@@ -353,6 +421,8 @@ lvim.plugins = {
             dap.configurations.dart = {}
             require("dap.ext.vscode").load_launchjs()
           end,
+=======
+>>>>>>> 29ec265c726705a4527413d00f8478ad8e45b0cd
         },
         dev_log = {
           enabled = true,
@@ -378,6 +448,7 @@ lvim.plugins = {
     end
   },
   {
+<<<<<<< HEAD
     "github/copilot.vim"
   },
   {
@@ -401,43 +472,36 @@ lvim.plugins = {
         request_timeout = 3000,
         lightbulb = {
           enable = false,
+=======
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          debounce = 75,
+          keymap = {
+            accept = "<C-w>",
+            accept_word = false,
+            accept_line = false,
+            next = "<C-[>",
+            prev = "<C-]>",
+            dismiss = "<C-d>",
+          },
+>>>>>>> 29ec265c726705a4527413d00f8478ad8e45b0cd
         },
       })
-
-      local keymap = vim.keymap.set
-
-      -- Lsp finder find the symbol definition implement reference
-      -- if there is no implement it will hide
-      -- when you use action in finder like open vsplit then you can
-      -- use <C-t> to jump back>
-      keymap("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
-
-      keymap("n", "<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<CR>")
-      keymap("n", "<leader>sw", "<cmd>Lspsaga show_workspace_diagnostics<CR>")
-      keymap("n", "<leader>sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>")
-
-      -- Rename
-      keymap("n", "gr", "<cmd>Lspsaga rename<CR>", { silent = true })
-
-      keymap({ "n", "v" }, "<leader>ac", "<cmd>Lspsaga code_action<CR>")
-
-      -- Peek Definition
-      -- you can edit the definition file in this flaotwindow
-      -- also support open/vsplit/etc operation check definition_action_keys
-      -- support tagstack C-t jump back
-      keymap("n", "gd", "<cmd>Lspsaga peek_definition<CR>", { silent = true })
-
-      -- Hover Doc
-      keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
-
-      -- Float terminal
-      keymap("n", "<A-d>", "<cmd>Lspsaga open_floaterm<CR>", { silent = true })
-      keymap("n", "∂", "<cmd>Lspsaga open_floaterm<CR>", { silent = true }) -- macos ALT+d(Option+d) binding
-      -- close floaterm
-      keymap("t", "<A-d>", [[<C-\><C-n><cmd>Lspsaga close_floaterm<CR>]], { silent = true })
-      keymap("t", "∂", [[<C-\><C-n><cmd>Lspsaga close_floaterm<CR>]], { silent = true }) -- macos ALT+d(Option+d) binding
     end,
   },
+  -- {
+  --   "zbirenbaum/copilot-cmp",
+  --  after = { "copilot.lua" },
+  --  config = function()
+  --    require("copilot_cmp").setup()
+  --  end
+  --},
   {
     "windwp/nvim-spectre",
     config = function()
@@ -463,14 +527,6 @@ lvim.plugins = {
 vim.g.copilot_no_tab_map = true
 vim.g.copilot_assume_mapped = true
 vim.g.copilot_tab_fallback = ""
-lvim.builtin.cmp.mapping["<C-w>"] = function(fallback)
-  local copilot_keys = vim.fn["copilot#Accept"]()
-  if copilot_keys ~= "" then
-    vim.api.nvim_feedkeys(copilot_keys, "i", true)
-  else
-    fallback()
-  end
-end
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 vim.api.nvim_create_autocmd("BufEnter", {
