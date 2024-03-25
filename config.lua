@@ -13,7 +13,7 @@ C:\Users\conta\AppData\Roaming\lunarvim
 ]]
 
 -- Defaults that came with LunarVim 1.3
--- Enable powershell as your default shell
+--[[ Enable powershell as your default shell
 vim.opt.shell = "pwsh.exe -NoLogo"
 vim.opt.shellcmdflag =
 "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
@@ -22,8 +22,7 @@ vim.cmd [[
 		let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
 		set shellquote= shellxquote=
   ]]
-
--- Set a compatible clipboard manager
+--[[
 vim.g.clipboard = {
   copy = {
     ["+"] = "win32yank.exe -i --crlf",
@@ -34,6 +33,8 @@ vim.g.clipboard = {
     ["*"] = "win32yank.exe -o --lf",
   },
 }
+
+]]
 
 -- SETTINGS
 lvim.log.level = "warn"
@@ -84,9 +85,6 @@ lvim.keys.normal_mode["]g"] = ":lua vim.diagnostic.goto_prev()<CR>"
 lvim.keys.normal_mode['<leader>aw'] = "<cmd>lua vim.lsp.buf.code_action()<CR>"
 -- CMP
 lvim.builtin.cmp.sources = {
-  -- Copilot Source
-  { name = "copilot",  group_index = 2 },
-  -- Other Sources
   { name = "nvim_lsp", group_index = 2 },
   { name = "path",     group_index = 2 },
   { name = "luasnip",  group_index = 2 },
@@ -95,6 +93,7 @@ lvim.builtin.cmp.sources = {
 lvim.keys.normal_mode['<leader>T'] = ":Telescope<CR>"
 lvim.keys.normal_mode['<leader>D'] = ":lua require'telescope.builtin'.live_grep{}<CR>"
 lvim.keys.normal_mode['<leader>H'] = ":lua require'telescope.builtin'.oldfiles{}<CR>"
+
 local _, actions = pcall(require, "telescope.actions")
 lvim.builtin.telescope.defaults.mappings = {
   -- for input mode
@@ -113,6 +112,12 @@ lvim.builtin.telescope.defaults.mappings = {
 lvim.builtin.telescope.on_config_done = function(telescope)
   telescope.load_extension "flutter"
 end
+
+-- worktree
+-- TODO change to mappings?
+lvim.keys.normal_mode['<leader>w'] = ":lua require('telescope').extensions.git_worktree.git_worktrees()"
+lvim.keys.normal_mode['<leader>c'] = ":lua require('telescope').extensions.git_worktree.create_git_worktree()"
+
 -- Fugitive
 lvim.builtin.which_key.mappings["g"] = {
   name = "+Git",
@@ -156,6 +161,7 @@ lvim.builtin.which_key.mappings["F"] = {
 
 lvim.builtin.which_key.mappings["G"] = {
   d = { "<cmd>ter fvm flutter run --flavor development -t lib/main_development.dart<cr>", "Run dev" },
+  p = { "<cmd>ter fvm flutter run --flavor production -t lib/main_production.dart<cr>", "Run prod" },
   s = { "<cmd>ter fvm flutter run --flavor staging -t lib/main_staging.dart<cr>", "Run dev" },
   t = { "<cmd>ter fvm dart format . && fvm flutter analyze lib test && fvm flutter test<cr>", "Test" },
   b = { "<cmd>ter fvm flutter pub run build_runner build -d<cr>", "Build" },
@@ -269,6 +275,14 @@ lvim.plugins = {
   },
   {
     'sidlatau/neotest-dart',
+    dependencies = {
+      "nvim-neotest/nvim-nio",
+      "nvim-lua/plenary.nvim",
+      "antoinemadec/FixCursorHold.nvim",
+      "nvim-treesitter/nvim-treesitter"
+    },
+    config = function()
+    end
   },
   {
     "nvim-neotest/neotest",
@@ -335,11 +349,6 @@ lvim.plugins = {
           run_via_dap = false,
           register_configurations = function(_)
             local dap = require("dap")
-            -- dap.adapters.dart = {
-            -- 	type = "executable",
-            -- 	command = "node",
-            -- 	args = { debugger_path, "flutter" },
-            -- }
             dap.set_log_level("TRACE")
             dap.configurations.dart = {}
             require("dap.ext.vscode").load_launchjs()
@@ -347,11 +356,9 @@ lvim.plugins = {
         },
         dev_log = {
           enabled = true,
-          -- open_cmd = "tabedit",
         },
         lsp = {
           color = {
-            -- show the derived colours for dart variables
             enabled = true,
             background = true,      -- highlight the background
             foreground = false,     -- highlight the foreground
@@ -371,19 +378,7 @@ lvim.plugins = {
     end
   },
   {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    config = function()
-      require("copilot").setup({})
-    end,
-  },
-  {
-    "zbirenbaum/copilot-cmp",
-    after = { "copilot.lua" },
-    config = function()
-      require("copilot_cmp").setup()
-    end
+    "github/copilot.vim"
   },
   {
     "glepnir/lspsaga.nvim",
@@ -392,13 +387,10 @@ lvim.plugins = {
       local saga = require("lspsaga")
 
       saga.setup({
-        -- keybinds for navigation in lspsaga window
         move_in_saga = { prev = "<C-k>", next = "<C-j>" },
-        -- use enter to open file with finder
         finder = {
           open = "<CR>",
         },
-        -- use enter to open file with definition preview
         definition = {
           edit = "<CR>",
         },
@@ -456,6 +448,13 @@ lvim.plugins = {
     "folke/todo-comments.nvim",
     config = function()
       require("todo-comments").setup {}
+    end
+  },
+  {
+    "ThePrimeagen/git-worktree.nvim",
+    config = function()
+      require("git-worktree").setup({
+      })
     end
   }
 }
