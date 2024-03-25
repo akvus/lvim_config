@@ -271,11 +271,6 @@ lvim.plugins = {
   {
     "MTDL9/vim-log-highlighting",
   },
-  -- I don't use it, but thanks to this dart LSP stick around, otherwise it goes into a lot of fucking issues
-  {
-    "glepnir/lspsaga.nvim",
-    event = "LspAttach",
-  },
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -446,31 +441,6 @@ lvim.plugins = {
   },
   {
     "github/copilot.vim"
-  },
-  {
-    "glepnir/lspsaga.nvim",
-    event = "LspAttach",
-    config = function()
-      local saga = require("lspsaga")
-
-      saga.setup({
-        move_in_saga = { prev = "<C-k>", next = "<C-j>" },
-        finder = {
-          open = "<CR>",
-        },
-        definition = {
-          edit = "<CR>",
-        },
-        diagnostic = {
-          max_width = 0.8,
-          max_show_width = 0.9,
-        },
-        request_timeout = 3000,
-        lightbulb = {
-          enable = false,
-        },
-      })
-    end,
   },
   {
     "zbirenbaum/copilot.lua",
