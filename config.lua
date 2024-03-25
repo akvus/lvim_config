@@ -2,7 +2,7 @@
 based on: https://gist.github.com/Antoniozinchenko/b7e1d3679a88ec4f1b3a3bd6e5b44961
 
 1. Install and enable some NerdFont
-2. :PackerSync
+2. :Lazy
 3. :checkhealth and fix issues
 
 Remove all branches but master PowerShell:  git branch -D  @(git branch | select-string -NotMatch "master" | Foreach {$_.Line.Trim()})
@@ -254,18 +254,6 @@ formatters.setup {
 local luasnip = require("luasnip")
 luasnip.filetype_extend("dart", { "flutter" })
 
--- set additional linters
-local linters = require "lvim.lsp.null-ls.linters"
-linters.setup {
-  {
-    command = "eslint_d",
-    filetypes = {
-      "javascript", "javascriptreact",
-      "typescript", "typescriptreact"
-    }
-  }
-}
-
 -- Additional Plugins
 lvim.plugins = {
   {
@@ -314,7 +302,7 @@ lvim.plugins = {
       multiline = true,                                                                     -- render multi-line messages
       indent_lines = true,                                                                  -- add an indent guide below the fold icons
       win_config = { border = "single" },                                                   -- window configuration for floating windows. See |nvim_open_win()|.
-      auto_open = true,                                                                     -- automatically open the list when you have diagnostics
+      auto_open = false,                                                                    -- automatically open the list when you have diagnostics
       auto_close = true,                                                                    -- automatically close the list when you have no diagnostics
       auto_preview = true,                                                                  -- automatically preview the location of the diagnostic. <esc> to close preview and go back to last window
       auto_fold = false,                                                                    -- automatically fold a file trouble list at creation
