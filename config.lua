@@ -413,7 +413,6 @@ lvim.plugins = {
         },
         debugger = {
           enabled = false,
-<<<<<<< HEAD
           run_via_dap = false,
           register_configurations = function(_)
             local dap = require("dap")
@@ -421,8 +420,6 @@ lvim.plugins = {
             dap.configurations.dart = {}
             require("dap.ext.vscode").load_launchjs()
           end,
-=======
->>>>>>> 29ec265c726705a4527413d00f8478ad8e45b0cd
         },
         dev_log = {
           enabled = true,
@@ -448,7 +445,6 @@ lvim.plugins = {
     end
   },
   {
-<<<<<<< HEAD
     "github/copilot.vim"
   },
   {
@@ -472,7 +468,11 @@ lvim.plugins = {
         request_timeout = 3000,
         lightbulb = {
           enable = false,
-=======
+        },
+      })
+    end,
+  },
+  {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     event = "InsertEnter",
@@ -490,7 +490,6 @@ lvim.plugins = {
             prev = "<C-]>",
             dismiss = "<C-d>",
           },
->>>>>>> 29ec265c726705a4527413d00f8478ad8e45b0cd
         },
       })
     end,
