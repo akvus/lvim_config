@@ -13,7 +13,6 @@ C:\Users\conta\AppData\Roaming\lunarvim
 ]]
 
 -- Defaults that came with LunarVim 1.3
---[[ Enable powershell as your default shell
 vim.opt.shell = "pwsh.exe -NoLogo"
 vim.opt.shellcmdflag =
 "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
@@ -22,7 +21,8 @@ vim.cmd [[
 		let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
 		set shellquote= shellxquote=
   ]]
---[[
+
+-- Set a compatible clipboard manager
 vim.g.clipboard = {
   copy = {
     ["+"] = "win32yank.exe -i --crlf",
@@ -33,8 +33,6 @@ vim.g.clipboard = {
     ["*"] = "win32yank.exe -o --lf",
   },
 }
-
-]]
 
 -- SETTINGS
 lvim.log.level = "warn"
@@ -88,16 +86,13 @@ lvim.keys.normal_mode['gi'] = "<cmd>lua vim.lsp.buf.implementation()<CR>"
 lvim.keys.normal_mode['gd'] = "<cmd>lua vim.lsp.buf.definition()<CR>"
 lvim.keys.normal_mode['gh'] = "<cmd>lua vim.lsp.buf.definition()<CR>"
 lvim.keys.normal_mode['gr'] = "<cmd>lua vim.lsp.buf.rename()<CR>"
+
 -- CMP
 lvim.builtin.cmp.sources = {
   { name = "nvim_lsp", group_index = 2 },
   { name = "path",     group_index = 2 },
   { name = "luasnip",  group_index = 2 },
 }
--- Telescope
-lvim.keys.normal_mode['<leader>T'] = ":Telescope<CR>"
-lvim.keys.normal_mode['<leader>D'] = ":lua require'telescope.builtin'.live_grep{}<CR>"
-lvim.keys.normal_mode['<leader>H'] = ":lua require'telescope.builtin'.oldfiles{}<CR>"
 
 local _, actions = pcall(require, "telescope.actions")
 lvim.builtin.telescope.defaults.mappings = {
@@ -118,11 +113,6 @@ lvim.builtin.telescope.on_config_done = function(telescope)
   telescope.load_extension "flutter"
 end
 
--- worktree
--- TODO change to mappings?
-lvim.keys.normal_mode['<leader>w'] = ":lua require('telescope').extensions.git_worktree.git_worktrees()"
-lvim.keys.normal_mode['<leader>c'] = ":lua require('telescope').extensions.git_worktree.create_git_worktree()"
-
 -- Fugitive
 lvim.builtin.which_key.mappings["g"] = {
   name = "+Git",
@@ -134,6 +124,12 @@ lvim.builtin.which_key.mappings["g"] = {
   d = { "<cmd>G diff<cr>", "Git diff" },
   x = { "<cmd>! git add . && git commit -m Update && git push<cr>", "Git add/commit/push at once" },
 }
+
+-- Telescope
+lvim.keys.normal_mode['<leader>T'] = ":Telescope<CR>"
+lvim.keys.normal_mode['<leader>D'] = ":lua require'telescope.builtin'.live_grep{}<CR>"
+lvim.keys.normal_mode['<leader>H'] = ":lua require'telescope.builtin'.oldfiles{}<CR>"
+
 -- nvim spectre (find and replace)
 lvim.keys.normal_mode["<leader>S"] = "<cmd>lua require('spectre').open()<CR>"
 -- search current word
@@ -143,6 +139,13 @@ lvim.keys.normal_mode["<leader>SS"] = "<esc>:lua require('spectre').open_visual(
 lvim.keys.normal_mode["<leader>Sf"] = "viw:lua require('spectre').open_file_search()<cr>"
 
 lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
+
+-- worktree
+lvim.builtin.which_key.mappings["W"] = {
+  name = "+Worktree",
+  l = { "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>", "Flutter Devices" },
+  c = { "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree(()<cr>", "Flutter Devices" },
+}
 
 -- Flutter
 lvim.builtin.which_key.mappings["F"] = {
