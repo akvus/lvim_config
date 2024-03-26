@@ -431,9 +431,6 @@ lvim.plugins = {
     end
   },
   {
-    "github/copilot.vim"
-  },
-  {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     event = "InsertEnter",
