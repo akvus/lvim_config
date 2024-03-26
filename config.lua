@@ -169,10 +169,10 @@ lvim.builtin.which_key.mappings["F"] = {
 }
 
 lvim.builtin.which_key.mappings["G"] = {
-  d = { "<cmd>ter fvm flutter run --flavor development -t lib/main_development.dart<cr>", "Run dev" },
-  p = { "<cmd>ter fvm flutter run --flavor production -t lib/main_production.dart<cr>", "Run prod" },
-  s = { "<cmd>ter fvm flutter run --flavor staging -t lib/main_staging.dart<cr>", "Run dev" },
-  S = { "<cmd>ter fvm flutter run --release --flavor staging -t lib/main_staging.dart<cr>", "Run stg release" },
+  d = { "<cmd>ter fvm flutter run --flavor development -t lib/main_development.dart<cr>", "Run development" },
+  p = { "<cmd>ter fvm flutter run --flavor production -t lib/main_production.dart<cr>", "Run production" },
+  s = { "<cmd>ter fvm flutter run --flavor staging -t lib/main_staging.dart<cr>", "Run staging" },
+  S = { "<cmd>ter fvm flutter run --release --flavor staging -t lib/main_staging.dart<cr>", "Run staging release" },
   t = { "<cmd>ter fvm dart format . && fvm flutter analyze lib test && fvm flutter test<cr>", "Test" },
   b = { "<cmd>ter fvm flutter pub run build_runner build -d<cr>", "Build" },
   g = { "<cmd>ter fvm flutter pub get<cr>", "Pub get" },
@@ -453,19 +453,6 @@ lvim.plugins = {
           },
         },
       })
-    end,
-  },
-  -- {
-  --   "zbirenbaum/copilot-cmp",
-  --  after = { "copilot.lua" },
-  --  config = function()
-  --    require("copilot_cmp").setup()
-  --  end
-  --},
-  {
-    "windwp/nvim-spectre",
-    config = function()
-      require("spectre").setup()
     end,
   },
   {
