@@ -40,6 +40,7 @@ lvim.format_on_save.enabled = true
 vim.opt.relativenumber = true
 lvim.leader = ","
 
+-- TODO consider replacing with https://github.com/coffebar/neovim-project since original plugin is no longer maintained
 -- Set what files make a directory root of a project
 -- defaults include other VCSs, Makefile, package.json
 lvim.builtin.project.patterns = { ">Projects", ".git", "pubspec.yaml" }
@@ -111,6 +112,7 @@ lvim.builtin.telescope.defaults.mappings = {
 }
 lvim.builtin.telescope.on_config_done = function(telescope)
   telescope.load_extension "flutter"
+  telescope.load_extension "git_worktree"
 end
 
 -- Fugitive
@@ -143,8 +145,8 @@ lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Project
 -- worktree
 lvim.builtin.which_key.mappings["W"] = {
   name = "+Worktree",
-  l = { "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>", "Flutter Devices" },
-  c = { "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree(()<cr>", "Flutter Devices" },
+  l = { "<cmd>lua require('telescope').extensions.git_worktree.git_worktree()<cr>", "List" },
+  c = { "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>", "Create" },
 }
 
 -- Flutter
@@ -260,7 +262,10 @@ luasnip.filetype_extend("dart", { "flutter" })
 -- Additional Plugins
 lvim.plugins = {
   {
-    "MTDL9/vim-log-highlighting",
+    'fei6409/log-highlight.nvim',
+    config = function()
+      require('log-highlight').setup {}
+    end,
   },
   {
     "folke/trouble.nvim",
@@ -272,10 +277,6 @@ lvim.plugins = {
       icons = true,                   -- use devicons for filenames
       mode = "workspace_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
       severity = nil,                 -- nil (ALL) or vim.diagnostic.severity.ERROR | WARN | INFO | HINT
-      fold_open = "",              -- icon used for open folds
-      fold_closed = "",            -- icon used for closed folds
-      group = true,                   -- group results by file
-      padding = true,                 -- add an extra new line on top of the list
       cycle_results = true,           -- cycle item list when reaching beginning or end of list
       action_keys = {
         -- key mappings for actions in the trouble list
@@ -353,6 +354,19 @@ lvim.plugins = {
   },
   {
     "vim-test/vim-test",
+  },
+  -- Plenary is included in LVIM, but it's not getting updated
+  {
+    "nvim-lua/plenary.nvim",
+    commit = "8aad439",
+  },
+  -- Telecsope is included in LVIM, but it's not getting updated
+  {
+    "nvim-telescope/telescope.nvim",
+    commit = "b22e6f6",
+  },
+  {
+
   },
   {
     "tpope/vim-surround",
@@ -459,7 +473,8 @@ lvim.plugins = {
     end
   },
   {
-    "ThePrimeagen/git-worktree.nvim",
+    "polarmutex/git-worktree.nvim",
+    branch = "v2",
     config = function()
       require("git-worktree").setup({
       })
