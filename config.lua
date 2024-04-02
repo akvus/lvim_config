@@ -143,10 +143,17 @@ lvim.keys.normal_mode["<leader>Sf"] = "viw:lua require('spectre').open_file_sear
 lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
 
 -- worktree
+list_worktrees = function()
+  require('g-worktree').setup()
+  require('telescope').extensions.g_worktree.list()
+end
 lvim.builtin.which_key.mappings["W"] = {
   name = "+Worktree",
-  l = { "<cmd>lua require('telescope').extensions.git_worktree.git_worktree()<cr>", "List" },
+  l = { "<cmd>lua list_worktrees()<cr>",
+    "List with some other plugin" },
   c = { "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>", "Create" },
+  -- This plugin does not work so far on Windows, cossider removing it
+  i = { "<cmd>lua require('telescope').extensions.git_worktree.git_worktree()<cr>", "List" },
 }
 
 -- Flutter
@@ -154,7 +161,8 @@ lvim.builtin.which_key.mappings["F"] = {
   name = "+Flutter",
   a = { "<cmd>FlutterRun<cr>", "Run, no flavors" },
   b = { "<cmd>ter fvm flutter pub run build_runner build -d<cr>", "Run build runner" },
-  c = { "<cmd>Telescope flutter commands<cr>", "Open Flutter Commans" },
+  c = { "<cmd>ter fvm flutter clean<cr>", "Flutter clean" },
+  l = { "<cmd>Telescope flutter commands<cr>", "Open Flutter Commans" },
   d = { "<cmd>FlutterDevices<cr>", "Flutter Devices" },
   D = { "<cmd>FlutterRun --flavor development -t lib/main_development.dart<cr>", "Run development" },
   e = { "<cmd>FlutterEmulators<cr>", "Flutter Emulators" },
@@ -366,7 +374,8 @@ lvim.plugins = {
     commit = "b22e6f6",
   },
   {
-
+    "Mohanbarman/g-worktree.nvim",
+    commit = "9a48083",
   },
   {
     "tpope/vim-surround",

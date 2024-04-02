@@ -12,6 +12,7 @@
   "copilot.lua": { "branch": "master", "commit": "f7612f5af4a7d7615babf43ab1e67a2d790c13a6" },
   "flutter-tools.nvim": { "branch": "main", "commit": "b9e1f2cd2cb1bd94c41ba64a227327d51b296ad9" },
   "friendly-snippets": { "branch": "main", "commit": "631f79e346b0b3203d2ce3eae619ca8d612e5463" },
+  "g-worktree.nvim": { "branch": "main", "commit": "9a4808325f6b705b8425c1322fa47550798c9aab" },
   "git-worktree.nvim": { "branch": "v2", "commit": "e445e86d53c58883b3bf5590b7ea56466748344e" },
   "gitsigns.nvim": { "branch": "main", "commit": "e5edefd9976039f5352e0c900f35206770b33a2d" },
   "indent-blankline.nvim": { "branch": "master", "commit": "018bd04d80c9a73d399c1061fa0c3b14a7614399" },
