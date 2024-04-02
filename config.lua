@@ -112,7 +112,7 @@ lvim.builtin.telescope.defaults.mappings = {
 }
 lvim.builtin.telescope.on_config_done = function(telescope)
   telescope.load_extension "flutter"
-  telescope.load_extension "git_worktree"
+  telescope.load_extension "g-worktree"
 end
 
 -- Fugitive
@@ -152,8 +152,6 @@ lvim.builtin.which_key.mappings["W"] = {
   l = { "<cmd>lua list_worktrees()<cr>",
     "List with some other plugin" },
   c = { "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>", "Create" },
-  -- This plugin does not work so far on Windows, cossider removing it
-  i = { "<cmd>lua require('telescope').extensions.git_worktree.git_worktree()<cr>", "List" },
 }
 
 -- Flutter
@@ -481,14 +479,6 @@ lvim.plugins = {
       require("todo-comments").setup {}
     end
   },
-  {
-    "polarmutex/git-worktree.nvim",
-    branch = "v2",
-    config = function()
-      require("git-worktree").setup({
-      })
-    end
-  }
 }
 
 -- copilot config
