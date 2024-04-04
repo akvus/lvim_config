@@ -95,6 +95,7 @@ lvim.builtin.cmp.sources = {
   { name = "luasnip",  group_index = 2 },
 }
 
+-- Telescope
 local _, actions = pcall(require, "telescope.actions")
 lvim.builtin.telescope.defaults.mappings = {
   -- for input mode
@@ -103,6 +104,7 @@ lvim.builtin.telescope.defaults.mappings = {
     ["<C-k>"] = actions.move_selection_previous,
     ["<C-n>"] = actions.cycle_history_next,
     ["<C-p>"] = actions.cycle_history_prev,
+    ["<C-c>"] = actions.close,
   },
   -- for normal mode
   n = {
@@ -110,6 +112,10 @@ lvim.builtin.telescope.defaults.mappings = {
     ["<C-k>"] = actions.move_selection_previous,
   },
 }
+lvim.keys.normal_mode['<leader>T'] = ":Telescope<CR>"
+lvim.keys.normal_mode['<leader>D'] = ":lua require'telescope.builtin'.live_grep{}<CR>"
+lvim.keys.normal_mode['<leader>H'] = ":lua require'telescope.builtin'.oldfiles{}<CR>"
+lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
 lvim.builtin.telescope.on_config_done = function(telescope)
   telescope.load_extension "flutter"
   telescope.load_extension "g-worktree"
@@ -127,10 +133,6 @@ lvim.builtin.which_key.mappings["g"] = {
   x = { "<cmd>! git add . && git commit -m Update && git push<cr>", "Git add/commit/push at once" },
 }
 
--- Telescope
-lvim.keys.normal_mode['<leader>T'] = ":Telescope<CR>"
-lvim.keys.normal_mode['<leader>D'] = ":lua require'telescope.builtin'.live_grep{}<CR>"
-lvim.keys.normal_mode['<leader>H'] = ":lua require'telescope.builtin'.oldfiles{}<CR>"
 
 -- nvim spectre (find and replace)
 lvim.keys.normal_mode["<leader>S"] = "<cmd>lua require('spectre').open()<CR>"
@@ -140,7 +142,6 @@ lvim.keys.normal_mode["<leader>SS"] = "<esc>:lua require('spectre').open_visual(
 --  search in current file
 lvim.keys.normal_mode["<leader>Sf"] = "viw:lua require('spectre').open_file_search()<cr>"
 
-lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
 
 -- worktree
 list_worktrees = function()
