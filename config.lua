@@ -175,6 +175,7 @@ lvim.builtin.which_key.mappings["F"] = {
   q = { "<cmd>FlutterQuit<cr>", "Quit running application" },
   v = { "<cmd>Telescope flutter fvm<cr>", "Flutter version" },
   x = { "<cmd>FlutterLogClear<cr>", "Clear log" },
+  w = { "<cmd>ter fvm dart run build_runner watch<cr>", "Build runner watch" },
 }
 
 lvim.builtin.which_key.mappings["G"] = {
