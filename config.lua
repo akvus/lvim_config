@@ -10,7 +10,6 @@ Remove all branches but master PowerShell:  git branch -D  @(git branch | select
 C:\Users\conta\AppData\Local\lvim
 C:\Users\conta\AppData\Roaming\lunarvim
 
-]]
 
 -- Defaults that came with LunarVim 1.3
 vim.opt.shell = "pwsh.exe -NoLogo"
@@ -20,7 +19,6 @@ vim.cmd [[
 		let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
 		let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
 		set shellquote= shellxquote=
-  ]]
 
 -- Set a compatible clipboard manager
 vim.g.clipboard = {
@@ -33,6 +31,8 @@ vim.g.clipboard = {
     ["*"] = "win32yank.exe -o --lf",
   },
 }
+
+]]
 
 -- SETTINGS
 lvim.log.level = "warn"
@@ -70,6 +70,9 @@ lvim.keys.normal_mode["<C-d>"] = "<C-d>zz"
 lvim.keys.normal_mode["<C-u>"] = "<C-u>zz"
 lvim.keys.normal_mode["<Tab>"] = ":bnext<CR>"
 lvim.keys.normal_mode["<S-Tab>"] = ":bprev<CR>"
+-- Move between quick fixes
+lvim.keys.normal_mode["<space>j"] = ":cnext<CR>"
+lvim.keys.normal_mode["<space>k"] = ":cprev<CR>"
 -- NvimTree
 lvim.keys.normal_mode["<leader>i"] = ":NvimTreeFindFile<CR>"
 lvim.keys.normal_mode["<leader>I"] = ":NvimTreeClose<CR>"
@@ -84,9 +87,12 @@ lvim.keys.normal_mode["]g"] = ":lua vim.diagnostic.goto_prev()<CR>"
 lvim.keys.normal_mode['<leader>aw'] = "<cmd>lua vim.lsp.buf.code_action()<CR>"
 lvim.keys.normal_mode['K'] = "<cmd>lua vim.lsp.buf.hover()<CR>"
 lvim.keys.normal_mode['gi'] = "<cmd>lua vim.lsp.buf.implementation()<CR>"
-lvim.keys.normal_mode['gd'] = "<cmd>lua vim.lsp.buf.definition()<CR>"
-lvim.keys.normal_mode['gh'] = "<cmd>lua vim.lsp.buf.definition()<CR>"
+lvim.keys.normal_mode['gd'] = "<cmd>lua require('telescope.builtin').lsp_definitions()<CR>"
+--lvim.keys.normal_mode['gd'] = "<cmd>lua vim.lsp.buf.definition()<CR>"
+lvim.keys.normal_mode['gh'] = "<cmd>lua require('telescope.builtin').lsp_references()<CR>"
+--lvim.keys.normal_mode['gh'] = "<cmd>lua vim.lsp.buf.references()<CR>"
 lvim.keys.normal_mode['gr'] = "<cmd>lua vim.lsp.buf.rename()<CR>"
+lvim.keys.normal_mode['ga'] = "<cmd>lua vim.lsp.buf.code_action()<CR>"
 
 -- CMP
 lvim.builtin.cmp.sources = {
