@@ -235,7 +235,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "markdown_inline",
 }
 
-lvim.builtin.treesitter.ignore_install = { "haskell" }
+lvim.builtin.treesitter.ignore_install = { "haskell", "php" }
 lvim.builtin.treesitter.highlight.enable = true
 
 -- generic LSP settings
@@ -374,8 +374,7 @@ lvim.plugins = {
     commit = "b22e6f6",
   },
   {
-    "Mohanbarman/g-worktree.nvim",
-    commit = "9a48083",
+    "akvus/g-worktree.nvim",
   },
   {
     "tpope/vim-surround",
