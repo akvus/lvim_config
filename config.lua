@@ -142,16 +142,6 @@ lvim.builtin.which_key.mappings["g"] = {
   x = { "<cmd>! git add . && git commit -m Update && git push<cr>", "Git add/commit/push at once" },
 }
 
-
--- nvim spectre (find and replace)
-lvim.keys.normal_mode["<leader>S"] = "<cmd>lua require('spectre').open()<CR>"
--- search current word
-lvim.keys.normal_mode["<leader>Sw"] = "r<cmd>lua equire('spectre').open_visual({select_word=true})<CR>"
-lvim.keys.normal_mode["<leader>SS"] = "<esc>:lua require('spectre').open_visual()<CR>"
---  search in current file
-lvim.keys.normal_mode["<leader>Sf"] = "viw:lua require('spectre').open_file_search()<cr>"
-
-
 -- worktree
 list_worktrees = function()
   require('g-worktree').setup()
