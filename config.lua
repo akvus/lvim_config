@@ -128,7 +128,6 @@ lvim.keys.normal_mode['<leader>H'] = ":lua require'telescope.builtin'.oldfiles{}
 lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
 lvim.builtin.telescope.on_config_done = function(telescope)
   telescope.load_extension "flutter"
-  telescope.load_extension "g-worktree"
 end
 
 -- Fugitive
@@ -158,6 +157,7 @@ list_worktrees = function()
   require('g-worktree').setup()
   require('telescope').extensions.g_worktree.list()
 end
+
 lvim.builtin.which_key.mappings["W"] = {
   name = "+Worktree",
   l = { "<cmd>lua list_worktrees()<cr>",
@@ -203,6 +203,7 @@ lvim.builtin.which_key.mappings["G"] = {
 
 lvim.builtin.which_key.mappings["t"] = {
   name = "+Trouble",
+  -- TODO: do I still need trouble? revmoe in favor of telescope + quickfix?
   r = { "<cmd>Trouble lsp_references<cr>", "References" },
   i = { "<cmd>Trouble lsp_implementations<cr>", "Implementations" },
   f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
