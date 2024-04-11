@@ -381,7 +381,7 @@ lvim.plugins = {
   -- Telecsope is included in LVIM, but it's not getting updated
   {
     "nvim-telescope/telescope.nvim",
-    commit = "b22e6f6",
+    commit = "31ddbea",
   },
   {
     "akvus/g-worktree.nvim",
