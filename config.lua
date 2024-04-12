@@ -9,6 +9,7 @@ Remove all branches but master PowerShell:  git branch -D  @(git branch | select
 
 C:\Users\conta\AppData\Local\lvim
 C:\Users\conta\AppData\Roaming\lunarvim
+]]
 
 
 -- Defaults that came with LunarVim 1.3
@@ -19,6 +20,7 @@ vim.cmd [[
 		let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
 		let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
 		set shellquote= shellxquote=
+]]
 
 -- Set a compatible clipboard manager
 vim.g.clipboard = {
@@ -32,7 +34,6 @@ vim.g.clipboard = {
   },
 }
 
-]]
 
 -- SETTINGS
 lvim.log.level = "warn"
@@ -163,14 +164,17 @@ lvim.builtin.which_key.mappings["F"] = {
   c = { "<cmd>ter fvm flutter clean<cr>", "Flutter clean" },
   l = { "<cmd>Telescope flutter commands<cr>", "Open Flutter Commans" },
   d = { "<cmd>FlutterDevices<cr>", "Flutter Devices" },
-  D = { "<cmd>FlutterRun --flavor development -t lib/main_development.dart<cr>", "Run development" },
+  D = { "<cmd>FlutterRun --flavor development -t lib/main_development.dart --dart-define ENVIRONMENT=development<cr>",
+    "Run development" },
   e = { "<cmd>FlutterEmulators<cr>", "Flutter Emulators" },
   o = { "<cmd>FlutterOutlineToggle<cr>", "Toggle outline" },
-  P = { "<cmd>FlutterRun --flavor production -t lib/main_production.dart<cr>", "Run production" },
+  P = { "<cmd>FlutterRun --flavor production -t lib/main_production.dart --dart-define ENVIRONMENT=production<cr>",
+    "Run production" },
   r = { "<cmd>FlutterReload<cr>", "Hot Reload App" },
   R = { "<cmd>FlutterRestart<cr>", "Hot Restart app" },
-  S = { "<cmd>FlutterRun --flavor staging -t lib/main_staging.dart<cr>", "Run staging" },
-  SR = { "<cmd>FlutterRun --release --flavor staging -t lib/main_staging.dart<cr>", "Run staging release" },
+  S = { "<cmd>FlutterRun --flavor staging -t lib/main_staging.dart --dart-define ENVIRONMENT=staging<cr>", "Run staging" },
+  SR = { "<cmd>FlutterRun --release --flavor staging -t lib/main_staging.dart --dart-define ENVIRONMENT=staging<cr>",
+    "Run staging release" },
   t = { "<cmd>FlutterDevTools<cr>", "Start dev tools" },
   q = { "<cmd>FlutterQuit<cr>", "Quit running application" },
   v = { "<cmd>Telescope flutter fvm<cr>", "Flutter version" },
@@ -179,10 +183,17 @@ lvim.builtin.which_key.mappings["F"] = {
 }
 
 lvim.builtin.which_key.mappings["G"] = {
-  d = { "<cmd>ter fvm flutter run --flavor development -t lib/main_development.dart<cr>", "Run development" },
-  p = { "<cmd>ter fvm flutter run --flavor production -t lib/main_production.dart<cr>", "Run production" },
-  s = { "<cmd>ter fvm flutter run --flavor staging -t lib/main_staging.dart<cr>", "Run staging" },
-  S = { "<cmd>ter fvm flutter run --release --flavor staging -t lib/main_staging.dart<cr>", "Run staging release" },
+  d = {
+    "<cmd>ter fvm flutter run --flavor development -t lib/main_development.dart --dart-define ENVIRONMENT=development<cr>",
+    "Run development" },
+  p = {
+    "<cmd>ter fvm flutter run --flavor production -t lib/main_production.dart --dart-define ENVIRONMENT=production<cr>",
+    "Run production" },
+  s = { "<cmd>ter fvm flutter run --flavor staging -t lib/main_staging.dart --dart-define ENVIRONMENT=staging<cr>",
+    "Run staging" },
+  S = {
+    "<cmd>ter fvm flutter run --release --flavor staging -t lib/main_staging.dart --dart-define ENVIRONMENT=staging<cr>",
+    "Run staging release" },
   t = { "<cmd>ter fvm dart format . && fvm flutter analyze lib test && fvm flutter test<cr>", "Test" },
   b = { "<cmd>ter fvm flutter pub run build_runner build -d<cr>", "Build" },
   g = { "<cmd>ter fvm flutter pub get<cr>", "Pub get" },
