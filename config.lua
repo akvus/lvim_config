@@ -44,7 +44,7 @@ lvim.leader = ","
 -- TODO consider replacing with https://github.com/coffebar/neovim-project since original plugin is no longer maintained
 -- Set what files make a directory root of a project
 -- defaults include other VCSs, Makefile, package.json
-lvim.builtin.project.patterns = { ">Projects", ".git", "pubspec.yaml" }
+lvim.builtin.project.patterns = { ">Projects", ".git", "pubspec.yaml", "pom.xml" }
 
 -- nvim-tree
 require("nvim-tree").setup({
