@@ -164,16 +164,19 @@ lvim.builtin.which_key.mappings["F"] = {
   c = { "<cmd>ter fvm flutter clean<cr>", "Flutter clean" },
   l = { "<cmd>Telescope flutter commands<cr>", "Open Flutter Commans" },
   d = { "<cmd>FlutterDevices<cr>", "Flutter Devices" },
-  D = { "<cmd>FlutterRun --flavor development -t lib/main_development.dart --dart-define ENVIRONMENT=development<cr>",
+  D = { "<cmd>FlutterRun --flavor development -t lib/main_development.dart --dart-define SENTRY_ENABLED=false<cr>",
     "Run development" },
   e = { "<cmd>FlutterEmulators<cr>", "Flutter Emulators" },
   o = { "<cmd>FlutterOutlineToggle<cr>", "Toggle outline" },
-  P = { "<cmd>FlutterRun --flavor production -t lib/main_production.dart --dart-define ENVIRONMENT=production<cr>",
+  P = { "<cmd>FlutterRun --flavor production -t lib/main_production.dart --dart-define SENTRY_ENABLED=false<cr>",
     "Run production" },
   r = { "<cmd>FlutterReload<cr>", "Hot Reload App" },
   R = { "<cmd>FlutterRestart<cr>", "Hot Restart app" },
-  S = { "<cmd>FlutterRun --flavor staging -t lib/main_staging.dart --dart-define ENVIRONMENT=staging<cr>", "Run staging" },
-  SR = { "<cmd>FlutterRun --release --flavor staging -t lib/main_staging.dart --dart-define ENVIRONMENT=staging<cr>",
+  S = {
+    "<cmd>FlutterRun --flavor staging -t lib/main_staging.dart --dart-define SENTRY_ENABLED=false<cr>",
+    "Run staging" },
+  SR = {
+    "<cmd>FlutterRun --release --flavor staging -t lib/main_staging.dart --dart-define SENTRY_ENABLED=false<cr>",
     "Run staging release" },
   t = { "<cmd>FlutterDevTools<cr>", "Start dev tools" },
   q = { "<cmd>FlutterQuit<cr>", "Quit running application" },
@@ -182,17 +185,26 @@ lvim.builtin.which_key.mappings["F"] = {
   w = { "<cmd>ter fvm dart run build_runner watch<cr>", "Build runner watch" },
 }
 
+-- Java
+lvim.builtin.which_key.mappings["J"] = {
+  -- TODO: think of writing a script to unify all my run commands for all types of projects
+  m = { "<cmd>ter ./mvnw spring-boot:run<cr>", "Run spring boot with maven" },
+}
+
+
+-- Flutter command line
 lvim.builtin.which_key.mappings["G"] = {
   d = {
-    "<cmd>ter fvm flutter run --flavor development -t lib/main_development.dart --dart-define ENVIRONMENT=development<cr>",
+    "<cmd>ter fvm flutter run --flavor development -t lib/main_development.dart --dart-define SENTRY_ENABLED=false<cr>",
     "Run development" },
   p = {
-    "<cmd>ter fvm flutter run --flavor production -t lib/main_production.dart --dart-define ENVIRONMENT=production<cr>",
+    "<cmd>ter fvm flutter run --flavor production -t lib/main_production.dart --dart-define SENTRY_ENABLED=false<cr>",
     "Run production" },
-  s = { "<cmd>ter fvm flutter run --flavor staging -t lib/main_staging.dart --dart-define ENVIRONMENT=staging<cr>",
+  s = {
+    "<cmd>ter fvm flutter run --flavor staging -t lib/main_staging.dart --dart-define SENTRY_ENABLED=false<cr>",
     "Run staging" },
   S = {
-    "<cmd>ter fvm flutter run --release --flavor staging -t lib/main_staging.dart --dart-define ENVIRONMENT=staging<cr>",
+    "<cmd>ter fvm flutter run --release --flavor staging -t lib/main_staging.dart --dart-define SENTRY_ENABLED=false<cr>",
     "Run staging release" },
   t = { "<cmd>ter fvm dart format . && fvm flutter analyze lib test && fvm flutter test<cr>", "Test" },
   b = { "<cmd>ter fvm flutter pub run build_runner build -d<cr>", "Build" },
@@ -493,6 +505,16 @@ lvim.plugins = {
       require("todo-comments").setup {}
     end
   },
+  {
+    "mfussenegger/nvim-jdtls",
+    config = function()
+      local config = {
+        cmd = { 'C:/users/conta/AppData/Roaming/lunarvim/lvim/utils/bin' },
+        root_dir = vim.fs.dirname(vim.fs.find({ 'gradlew', '.git', 'mvnw' }, { upward = true })[1]),
+      }
+      require('jdtls').start_or_attach(config)
+    end
+  }
 }
 
 -- copilot config
