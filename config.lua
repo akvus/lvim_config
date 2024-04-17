@@ -230,10 +230,6 @@ lvim.builtin.which_key.mappings["G"] = {
 lvim.builtin.which_key.mappings["t"] = {
   name = "+Trouble",
   -- TODO: do I still need trouble? revmoe in favor of telescope + quickfix?
-  r = { "<cmd>Trouble lsp_references<cr>", "References" },
-  i = { "<cmd>Trouble lsp_implementations<cr>", "Implementations" },
-  f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
-  t = { "<cmd>Trouble lsp_type_definitions<cr>", "Type Definitions" },
   d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
   q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
