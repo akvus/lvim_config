@@ -200,6 +200,9 @@ lvim.builtin.which_key.mappings["G"] = {
   p = {
     "<cmd>ter fvm flutter run --flavor production -t lib/main_production.dart --dart-define SENTRY_ENABLED=false<cr>",
     "Run production" },
+  P = {
+    "<cmd>ter fvm flutter run --release --flavor production -t lib/main_production.dart --dart-define SENTRY_ENABLED=false<cr>",
+    "Run production" },
   s = {
     "<cmd>ter fvm flutter run --flavor staging -t lib/main_staging.dart --dart-define SENTRY_ENABLED=false<cr>",
     "Run staging" },
