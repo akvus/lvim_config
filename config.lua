@@ -9,7 +9,7 @@ Remove all branches but master PowerShell:  git branch -D  @(git branch | select
 
 C:\Users\conta\AppData\Local\lvim
 C:\Users\conta\AppData\Roaming\lunarvim
-]]
+
 
 
 -- Defaults that came with LunarVim 1.3
@@ -20,7 +20,6 @@ vim.cmd [[
 		let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
 		let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
 		set shellquote= shellxquote=
-]]
 
 -- Set a compatible clipboard manager
 vim.g.clipboard = {
@@ -33,6 +32,7 @@ vim.g.clipboard = {
     ["*"] = "win32yank.exe -o --lf",
   },
 }
+]]
 
 
 -- SETTINGS
@@ -80,12 +80,12 @@ lvim.keys.normal_mode["<leader>I"] = ":NvimTreeClose<CR>"
 -- Resize splits
 lvim.keys.normal_mode["<leader>="] = ":vert res +10<CR>"
 lvim.keys.normal_mode["<leader>-"] = ":vert res -10<CR>"
+
 -- LSP
 lvim.keys.normal_mode["g["] = ":lua vim.diagnostic.goto_next()<CR>"
 lvim.keys.normal_mode["g]"] = ":lua vim.diagnostic.goto_prev()<CR>"
 lvim.keys.normal_mode["[g"] = ":lua vim.diagnostic.goto_next()<CR>"
 lvim.keys.normal_mode["]g"] = ":lua vim.diagnostic.goto_prev()<CR>"
-
 lvim.keys.normal_mode['K'] = "<cmd>lua vim.lsp.buf.hover()<CR>"
 lvim.keys.normal_mode['gi'] = "<cmd>lua require('telescope.builtin').lsp_implementations()<CR>"
 --lvim.keys.normal_mode['gi'] = "<cmd>lua vim.lsp.buf.implementation()<CR>"
@@ -130,6 +130,22 @@ lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Project
 lvim.builtin.telescope.on_config_done = function(telescope)
   telescope.load_extension "flutter"
 end
+lvim.builtin.telescope.pickers = {
+  find_files = {
+    layout_strategy = 'horizontal',
+    layout_config = {
+      width = 0.95,
+      height = 0.7,
+    },
+  },
+  live_grep = {
+    layout_strategy = 'horizontal',
+    layout_config = {
+      width = 0.95,
+      height = 0.7,
+    },
+  },
+}
 
 -- Fugitive
 lvim.builtin.which_key.mappings["g"] = {
@@ -512,8 +528,8 @@ lvim.plugins = {
     "mfussenegger/nvim-jdtls",
     config = function()
       local config = {
-        cmd = { 'C:/users/conta/AppData/Roaming/lunarvim/lvim/utils/bin' },
-        root_dir = vim.fs.dirname(vim.fs.find({ 'gradlew', '.git', 'mvnw' }, { upward = true })[1]),
+        --cmd = { 'C:/users/conta/AppData/Roaming/lunarvim/lvim/utils/bin' },
+        --root_dir = vim.fs.dirname(vim.fs.find({ 'gradlew', '.git', 'mvnw' }, { upward = true })[1]),
       }
       require('jdtls').start_or_attach(config)
     end
