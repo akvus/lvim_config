@@ -9,30 +9,32 @@ Remove all branches but master PowerShell:  git branch -D  @(git branch | select
 
 C:\Users\conta\AppData\Local\lvim
 C:\Users\conta\AppData\Roaming\lunarvim
-
-
-
--- Defaults that came with LunarVim 1.3
-vim.opt.shell = "pwsh.exe -NoLogo"
-vim.opt.shellcmdflag =
-"-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
-vim.cmd [[
-		let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-		let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-		set shellquote= shellxquote=
-
--- Set a compatible clipboard manager
-vim.g.clipboard = {
-  copy = {
-    ["+"] = "win32yank.exe -i --crlf",
-    ["*"] = "win32yank.exe -i --crlf",
-  },
-  paste = {
-    ["+"] = "win32yank.exe -o --lf",
-    ["*"] = "win32yank.exe -o --lf",
-  },
-}
 ]]
+
+
+if (vim.loop.os_uname().sysname == 'Windows_NT') then
+  -- Defaults that came with LunarVim 1.3
+  vim.opt.shell = "pwsh.exe -NoLogo"
+  vim.opt.shellcmdflag =
+  "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+  vim.cmd [[
+      let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+      let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+      set shellquote= shellxquote=
+  ]]
+
+  -- Set a compatible clipboard manager
+  vim.g.clipboard = {
+    copy = {
+      ["+"] = "win32yank.exe -i --crlf",
+      ["*"] = "win32yank.exe -i --crlf",
+    },
+    paste = {
+      ["+"] = "win32yank.exe -o --lf",
+      ["*"] = "win32yank.exe -o --lf",
+    },
+  }
+end
 
 
 -- SETTINGS
@@ -517,11 +519,13 @@ lvim.plugins = {
   {
     "mfussenegger/nvim-jdtls",
     config = function()
-      local config = {
-        --cmd = { 'C:/users/conta/AppData/Roaming/lunarvim/lvim/utils/bin' },
-        --root_dir = vim.fs.dirname(vim.fs.find({ 'gradlew', '.git', 'mvnw' }, { upward = true })[1]),
-      }
-      require('jdtls').start_or_attach(config)
+      if (vim.loop.os_uname().sysname == 'Windows_NT') then
+        local config = {
+          cmd = { 'C:/users/conta/AppData/Roaming/lunarvim/lvim/utils/bin' },
+          root_dir = vim.fs.dirname(vim.fs.find({ 'gradlew', '.git', 'mvnw' }, { upward = true })[1]),
+        }
+        require('jdtls').start_or_attach(config)
+      end
     end
   }
 }
