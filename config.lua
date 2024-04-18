@@ -4,15 +4,11 @@ based on: https://gist.github.com/Antoniozinchenko/b7e1d3679a88ec4f1b3a3bd6e5b44
 1. Install and enable some NerdFont
 2. :Lazy
 3. :checkhealth and fix issues
-
-Remove all branches but master PowerShell:  git branch -D  @(git branch | select-string -NotMatch "master" | Foreach {$_.Line.Trim()})
-
-C:\Users\conta\AppData\Local\lvim
-C:\Users\conta\AppData\Roaming\lunarvim
 ]]
 
 require "powershell"
 require "flutter"
+require "java"
 
 -- SETTINGS
 lvim.log.level = "warn"
@@ -160,11 +156,6 @@ lvim.builtin.which_key.mappings["W"] = {
   c = { "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>", "Create" },
 }
 
--- Java
-lvim.builtin.which_key.mappings["J"] = {
-  -- TODO: think of writing a script to unify all my run commands for all types of projects
-  m = { "<cmd>ter ./mvnw spring-boot:run<cr>", "Run spring boot with maven" },
-}
 
 
 lvim.builtin.which_key.mappings["t"] = {

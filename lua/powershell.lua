@@ -1,3 +1,8 @@
+--[[
+C:\Users\NAME\AppData\Local\lvim ------ LVIM CONFIG PATH ON WINDOWS
+C:\Users\NAME\AppData\Roaming\lunarvim ------- OTHER LVIM STUFF ON WINDOWS
+--]]
+
 function IsWindows()
   return vim.loop.os_uname().sysname == 'Windows_NT';
 end
