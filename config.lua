@@ -11,8 +11,11 @@ C:\Users\conta\AppData\Local\lvim
 C:\Users\conta\AppData\Roaming\lunarvim
 ]]
 
+function IsWindows()
+  return vim.loop.os_uname().sysname == 'Windows_NT';
+end
 
-if (vim.loop.os_uname().sysname == 'Windows_NT') then
+if (IsWindows()) then
   -- Defaults that came with LunarVim 1.3
   vim.opt.shell = "pwsh.exe -NoLogo"
   vim.opt.shellcmdflag =
@@ -143,7 +146,17 @@ lvim.builtin.telescope.pickers = {
   },
 }
 
--- Fugitive
+-- Fugitive/git
+-- TODO: make this work
+function RemoveAllLocalGitBranches()
+  if (IsWindows()) then
+    -- PowerShell
+    vim.cmd [[git branch | grep -v "develop" | grep -v "master" | grep -v "main" | xargs git branch -D]]
+  else
+    vim.cmd [[!git branch -D $(git branch | grep -v "master" | xargs)]]
+  end
+end
+
 lvim.builtin.which_key.mappings["g"] = {
   name = "+Git",
   p = { "<cmd>G push<cr>", "Git push" },
@@ -519,7 +532,7 @@ lvim.plugins = {
   {
     "mfussenegger/nvim-jdtls",
     config = function()
-      if (vim.loop.os_uname().sysname == 'Windows_NT') then
+      if (IsWindows()) then
         local config = {
           cmd = { 'C:/users/conta/AppData/Roaming/lunarvim/lvim/utils/bin' },
           root_dir = vim.fs.dirname(vim.fs.find({ 'gradlew', '.git', 'mvnw' }, { upward = true })[1]),
