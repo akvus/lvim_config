@@ -12,6 +12,7 @@ C:\Users\conta\AppData\Roaming\lunarvim
 ]]
 
 require "powershell"
+require "flutter"
 
 -- SETTINGS
 lvim.log.level = "warn"
@@ -99,18 +100,23 @@ lvim.keys.normal_mode['<leader>T'] = ":Telescope<CR>"
 lvim.keys.normal_mode['<leader>D'] = ":lua require'telescope.builtin'.live_grep{}<CR>"
 lvim.keys.normal_mode['<leader>H'] = ":lua require'telescope.builtin'.oldfiles{}<CR>"
 lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
-lvim.builtin.telescope.on_config_done = function(telescope)
-  telescope.load_extension "flutter"
-end
+
 lvim.builtin.telescope.pickers = {
   find_files = {
     layout_strategy = 'horizontal',
     layout_config = {
       width = 0.95,
       height = 0.7,
-    },
+    }
   },
   live_grep = {
+    layout_strategy = 'horizontal',
+    layout_config = {
+      width = 0.95,
+      height = 0.7,
+    },
+  },
+  oldfiles = {
     layout_strategy = 'horizontal',
     layout_config = {
       width = 0.95,
@@ -154,66 +160,12 @@ lvim.builtin.which_key.mappings["W"] = {
   c = { "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>", "Create" },
 }
 
--- Flutter
-lvim.builtin.which_key.mappings["F"] = {
-  name = "+Flutter",
-  a = { "<cmd>FlutterRun<cr>", "Run, no flavors" },
-  b = { "<cmd>ter fvm flutter pub run build_runner build -d<cr>", "Run build runner" },
-  c = { "<cmd>ter fvm flutter clean<cr>", "Flutter clean" },
-  l = { "<cmd>Telescope flutter commands<cr>", "Open Flutter Commans" },
-  d = { "<cmd>FlutterDevices<cr>", "Flutter Devices" },
-  D = { "<cmd>FlutterRun --flavor development -t lib/main_development.dart --dart-define SENTRY_ENABLED=false<cr>",
-    "Run development" },
-  e = { "<cmd>FlutterEmulators<cr>", "Flutter Emulators" },
-  o = { "<cmd>FlutterOutlineToggle<cr>", "Toggle outline" },
-  P = { "<cmd>FlutterRun --flavor production -t lib/main_production.dart --dart-define SENTRY_ENABLED=false<cr>",
-    "Run production" },
-  r = { "<cmd>FlutterReload<cr>", "Hot Reload App" },
-  R = { "<cmd>FlutterRestart<cr>", "Hot Restart app" },
-  S = {
-    "<cmd>FlutterRun --flavor staging -t lib/main_staging.dart --dart-define SENTRY_ENABLED=false<cr>",
-    "Run staging" },
-  SR = {
-    "<cmd>FlutterRun --release --flavor staging -t lib/main_staging.dart --dart-define SENTRY_ENABLED=false<cr>",
-    "Run staging release" },
-  t = { "<cmd>FlutterDevTools<cr>", "Start dev tools" },
-  q = { "<cmd>FlutterQuit<cr>", "Quit running application" },
-  v = { "<cmd>Telescope flutter fvm<cr>", "Flutter version" },
-  x = { "<cmd>FlutterLogClear<cr>", "Clear log" },
-  w = { "<cmd>ter fvm dart run build_runner watch<cr>", "Build runner watch" },
-}
-
 -- Java
 lvim.builtin.which_key.mappings["J"] = {
   -- TODO: think of writing a script to unify all my run commands for all types of projects
   m = { "<cmd>ter ./mvnw spring-boot:run<cr>", "Run spring boot with maven" },
 }
 
-
--- Flutter command line
-lvim.builtin.which_key.mappings["G"] = {
-  d = {
-    "<cmd>ter fvm flutter run --flavor development -t lib/main_development.dart --dart-define SENTRY_ENABLED=false<cr>",
-    "Run development" },
-  p = {
-    "<cmd>ter fvm flutter run --flavor production -t lib/main_production.dart --dart-define SENTRY_ENABLED=false<cr>",
-    "Run production" },
-  P = {
-    "<cmd>ter fvm flutter run --release --flavor production -t lib/main_production.dart --dart-define SENTRY_ENABLED=false<cr>",
-    "Run production" },
-  s = {
-    "<cmd>ter fvm flutter run --flavor staging -t lib/main_staging.dart --dart-define SENTRY_ENABLED=false<cr>",
-    "Run staging" },
-  S = {
-    "<cmd>ter fvm flutter run --release --flavor staging -t lib/main_staging.dart --dart-define SENTRY_ENABLED=false<cr>",
-    "Run staging release" },
-  t = { "<cmd>ter fvm dart format . && fvm flutter analyze lib test && fvm flutter test<cr>", "Test" },
-  b = { "<cmd>ter fvm flutter pub run build_runner build -d<cr>", "Build" },
-  g = { "<cmd>ter fvm flutter pub get<cr>", "Pub get" },
-  c = {
-    "<cmd>ter very_good test --coverage --exclude-coverage 'lib/{**/*.g.dart, gen/**/*.dart, firebase_options_*.dart}' --min-coverage 100<cr>",
-    "Run tests with coverage check" },
-}
 
 lvim.builtin.which_key.mappings["t"] = {
   name = "+Trouble",
@@ -284,10 +236,6 @@ formatters.setup {
     filetypes = { "typescript", "typescriptreact", 'javascript', 'javascriptreact' },
   },
 }
-
--- Flutter snippets enable
-local luasnip = require("luasnip")
-luasnip.filetype_extend("dart", { "flutter" })
 
 -- Additional Plugins
 lvim.plugins = {
@@ -527,10 +475,3 @@ vim.api.nvim_create_autocmd("BufEnter", {
   -- enable wrap mode for json files only
   command = "setlocal wrap",
 })
-
--- Flutter .arb files should be considered as json files
-vim.filetype.add {
-  extension = {
-    arb = 'json',
-  }
-}
