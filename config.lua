@@ -93,6 +93,7 @@ lvim.builtin.telescope.defaults.mappings = {
   },
 }
 lvim.keys.normal_mode['<leader>T'] = ":Telescope<CR>"
+lvim.keys.normal_mode['<leader>F'] = ":lua require'telescope.builtin'.find_files{}<CR>"
 lvim.keys.normal_mode['<leader>D'] = ":lua require'telescope.builtin'.live_grep{}<CR>"
 lvim.keys.normal_mode['<leader>H'] = ":lua require'telescope.builtin'.oldfiles{}<CR>"
 lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }

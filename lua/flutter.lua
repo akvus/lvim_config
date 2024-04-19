@@ -14,7 +14,7 @@ vim.filetype.add {
 }
 
 -- Flutter
-lvim.builtin.which_key.mappings["F"] = {
+lvim.builtin.which_key.mappings["a"] = {
   name = "+Flutter",
   a = { "<cmd>FlutterRun<cr>", "Run, no flavors" },
   b = { "<cmd>ter fvm flutter pub run build_runner build -d<cr>", "Run build runner" },
