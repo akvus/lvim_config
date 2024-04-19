@@ -122,7 +122,7 @@ lvim.builtin.telescope.pickers = {
 }
 
 -- Fugitive/git
--- TODO: make this work
+-- TODO: make this work, should add some confirmation pop-up
 function RemoveAllLocalGitBranches()
   if (IsWindows()) then
     -- PowerShell
