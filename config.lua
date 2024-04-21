@@ -145,6 +145,7 @@ lvim.builtin.which_key.mappings["g"] = {
 }
 
 -- worktree
+-- Fetch fix: https://morgan.cugerone.com/blog/workarounds-to-git-worktree-using-bare-repository-and-cannot-fetch-remote-branches/
 list_worktrees = function()
   require('g-worktree').setup()
   require('telescope').extensions.g_worktree.list()
@@ -156,8 +157,6 @@ lvim.builtin.which_key.mappings["W"] = {
     "List with some other plugin" },
   c = { "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>", "Create" },
 }
-
-
 
 lvim.builtin.which_key.mappings["t"] = {
   name = "+Trouble",
