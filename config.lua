@@ -198,6 +198,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "kotlin",
   "markdown",
   "markdown_inline",
+  "python",
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell", "php" }
@@ -364,8 +365,8 @@ lvim.plugins = {
     lazy = false,
     config = function()
       require('flutter-tools').setup {
-        flutter_path = ".fvm/flutter_sdk/bin/flutter.bat",
-        -- fvm = true, -- takes priority over path, uses <workspace>/.fvm/flutter_sdk if enabled
+        -- flutter_path = ".fvm/flutter_sdk/bin/flutter.bat",
+        fvm = true, -- takes priority over path, uses <workspace>/.fvm/flutter_sdk if enabled
         ui = {
           border = "rounded",
           notification_style = "plugin",
