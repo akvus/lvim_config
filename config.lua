@@ -298,19 +298,11 @@ lvim.plugins = {
     "mg979/vim-visual-multi",
   },
   {
-    'sidlatau/neotest-dart',
-    dependencies = {
-      "nvim-neotest/nvim-nio",
-      "nvim-lua/plenary.nvim",
-      "antoinemadec/FixCursorHold.nvim",
-      "nvim-treesitter/nvim-treesitter"
-    },
-    config = function()
-    end
-  },
-  {
     "nvim-neotest/neotest",
-    dependencies = { 'sidlatau/neotest-dart' },
+    dependencies = {
+      'sidlatau/neotest-dart',
+      "nvim-neotest/nvim-nio",
+    },
     config = function()
       require('neotest').setup({
         adapters = {
@@ -397,9 +389,9 @@ lvim.plugins = {
         lsp = {
           color = {
             enabled = true,
-            background = true,      -- highlight the background
-            foreground = false,     -- highlight the foreground
-            virtual_text = true,    -- show the highlight using virtual text
+            background = true, -- highlight the background
+            foreground = false, -- highlight the foreground
+            virtual_text = true, -- show the highlight using virtual text
             virtual_text_str = "■", -- the virtual text character to highlight
           },
           settings = {
