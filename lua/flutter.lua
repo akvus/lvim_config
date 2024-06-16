@@ -56,7 +56,7 @@ lvim.builtin.which_key.mappings["G"] = {
     "Run staging release" },
 
   f = { "<cmd>Telescope flutter commands<cr>", "Open Flutter Commans" },
-  t = { "<cmd>ter fvm dart format . && fvm flutter analyze lib test && fvm flutter test<cr>", "Test" },
+  t = { "<cmd>ter fvm dart format . && fvm dart analyze && fvm flutter test -x integration<cr>", "Test" },
   b = { "<cmd>ter fvm flutter pub run build_runner build -d<cr>", "Run build runner" },
   g = { "<cmd>ter fvm flutter pub get<cr>", "Pub get" },
   c = { "<cmd>ter fvm flutter clean<cr>", "Flutter clean" },

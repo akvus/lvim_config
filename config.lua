@@ -198,6 +198,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "kotlin",
   "markdown",
   "markdown_inline",
+  "python",
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell", "php" }
@@ -297,19 +298,35 @@ lvim.plugins = {
     "mg979/vim-visual-multi",
   },
   {
-    'sidlatau/neotest-dart',
-    dependencies = {
-      "nvim-neotest/nvim-nio",
-      "nvim-lua/plenary.nvim",
-      "antoinemadec/FixCursorHold.nvim",
-      "nvim-treesitter/nvim-treesitter"
-    },
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
-    end
+      local harpoon = require("harpoon")
+
+      -- REQUIRED
+      harpoon:setup()
+      -- REQUIRED
+
+      vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
+      vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+
+      vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end)
+      vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end)
+      vim.keymap.set("n", "<leader>3", function() harpoon:list():select(3) end)
+      vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end)
+
+      -- Toggle previous & next buffers stored within Harpoon list
+      vim.keymap.set("n", "<C-S-J>", function() harpoon:list():prev() end)
+      vim.keymap.set("n", "<C-S-K>", function() harpoon:list():next() end)
+    end,
   },
   {
     "nvim-neotest/neotest",
-    dependencies = { 'sidlatau/neotest-dart' },
+    dependencies = {
+      'sidlatau/neotest-dart',
+      "nvim-neotest/nvim-nio",
+    },
     config = function()
       require('neotest').setup({
         adapters = {
@@ -327,12 +344,12 @@ lvim.plugins = {
   -- Plenary is included in LVIM, but it's not getting updated
   {
     "nvim-lua/plenary.nvim",
-    commit = "8aad439",
+    -- commit = "8aad439",
   },
   -- Telecsope is included in LVIM, but it's not getting updated
   {
     "nvim-telescope/telescope.nvim",
-    commit = "31ddbea",
+    -- commit = "31ddbea",
   },
   {
     "akvus/g-worktree.nvim",
@@ -364,8 +381,8 @@ lvim.plugins = {
     lazy = false,
     config = function()
       require('flutter-tools').setup {
-        flutter_path = ".fvm/flutter_sdk/bin/flutter.bat",
-        -- fvm = true, -- takes priority over path, uses <workspace>/.fvm/flutter_sdk if enabled
+        -- flutter_path = ".fvm/flutter_sdk/bin/flutter.bat",
+        fvm = true, -- takes priority over path, uses <workspace>/.fvm/flutter_sdk if enabled
         ui = {
           border = "rounded",
           notification_style = "plugin",
@@ -396,9 +413,9 @@ lvim.plugins = {
         lsp = {
           color = {
             enabled = true,
-            background = true,      -- highlight the background
-            foreground = false,     -- highlight the foreground
-            virtual_text = true,    -- show the highlight using virtual text
+            background = true, -- highlight the background
+            foreground = false, -- highlight the foreground
+            virtual_text = true, -- show the highlight using virtual text
             virtual_text_str = "■", -- the virtual text character to highlight
           },
           settings = {
