@@ -1,8 +1,10 @@
 local cmd
+local home_dir = os.getenv("HOME")
+
 if (IsWindows()) then
   cmd = 'C:/users/conta/AppData/Roaming/lunarvim/lvim/utils/bin'
 else
-  cmd = "/home/akvus/tools/jdt-language-server-1.35.0-202404251256/bin/jdtls"
+  cmd = home_dir .. "/tools/jdt-language-server-1.35.0-202404251256/bin/jdtls"
 end
 
 local config = {
