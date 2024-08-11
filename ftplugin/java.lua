@@ -49,14 +49,14 @@ local config = {
     "-Dosgi.bundles.defaultStartLevel=4",
     "-Declipse.product=org.eclipse.jdt.ls.core.product",
     "-Dlog.protocol=true",
-    "-Dlog.level=ERROR",
+    "-Dlog.level=ALL",
+    "-javaagent:" .. home .. "/tools/lombok.jar",
     "-Xms1g",
     "--add-modules=ALL-SYSTEM",
     "--add-opens",
     "java.base/java.util=ALL-UNNAMED",
     "--add-opens",
     "java.base/java.lang=ALL-UNNAMED",
-    "-javaagent:" .. home .. "/tools/lombok.jar",
     "-jar",
     vim.fn.glob(home .. "/.local/share/lvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
     "-configuration",
@@ -75,10 +75,10 @@ local config = {
       configuration = {
         updateBuildConfiguration = "interactive",
         runtimes = {
-          {
-            name = "JavaSE-18",
-            path = "~/.sdkman/candidates/java/18.0.2-sem",
-          },
+          -- {
+          --   name = "JavaSE-18",
+          --   path = "~/.sdkman/candidates/java/18.0.2-sem",
+          -- },
         },
       },
       maven = {
