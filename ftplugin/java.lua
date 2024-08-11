@@ -9,7 +9,7 @@ local home = os.getenv "HOME"
 if (IsWindows()) then
   cmd = 'C:/users/conta/AppData/Roaming/lunarvim/lvim/utils/bin'
 else
-  cmd = home .. "/tools/jdt-language-server-1.35.0-202404251256/bin/jdtls"
+  cmd = home .. "/.local/share/lvim/mason/packages/jdtls/jdtls"
 end
 
 
@@ -59,10 +59,10 @@ local config = {
     "-javaagent:" .. home .. "/tools/lombok.jar",
     "-jar",
     vim.fn.glob(home .. "/.local/share/lvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
-    -- "-configuration",
-    -- home .. "/.local/share/lvim/mason/packages/jdtls/config_" .. os_config,
-    -- "-data",
-    -- workspace_dir,
+    "-configuration",
+    home .. "/.local/share/lvim/mason/packages/jdtls/config_" .. os_config,
+    "-data",
+    workspace_dir,
   },
   root_dir = require("jdtls.setup").find_root { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" },
   capabilities = capabilities,
