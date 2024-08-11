@@ -1,6 +1,4 @@
 --[[
-based on: https://gist.github.com/Antoniozinchenko/b7e1d3679a88ec4f1b3a3bd6e5b44961
-
 1. Install and enable some NerdFont
 2. :Lazy
 3. :checkhealth and fix issues
@@ -8,9 +6,9 @@ based on: https://gist.github.com/Antoniozinchenko/b7e1d3679a88ec4f1b3a3bd6e5b44
 
 require "powershell"
 require "flutter"
-require "java"
+require "javaconfig"
 
-require 'lspconfig'.kotlin_language_server.setup{}
+require('lspconfig').kotlin_language_server.setup {}
 
 -- SETTINGS
 lvim.log.level = "warn"
@@ -396,12 +394,64 @@ lvim.plugins = {
     end
   },
   {
-    "mfussenegger/nvim-jdtls",
-  }
-}
+    'nvim-java/nvim-java',
+    config = function()
+      require('java').setup({})
+      require('lspconfig').jdtls.setup({
+        settings = {
+          java = {
+            configuration = {
+              runtimes = {
+                {
+                  name = "JavaSE-21",
+                  path = "/opt/jdk-21",
+                  default = true,
+                }
+              }
+            }
+          }
+        }
+      })
+    end,
+    dependencies = {
+      'nvim-java/lua-async-await',
+      'nvim-java/nvim-java-refactor',
+      'nvim-java/nvim-java-core',
+      'nvim-java/nvim-java-test',
+      'nvim-java/nvim-java-dap',
+      'MunifTanjim/nui.nvim',
+      'neovim/nvim-lspconfig',
+      'mfussenegger/nvim-dap',
+      {
+        'JavaHello/spring-boot.nvim',
+        commit = '218c0c26c14d99feca778e4d13f5ec3e8b1b60f0',
+      },
+      {
+        'williamboman/mason.nvim',
+        config = function(_, opts)
+          local conf = vim.tbl_deep_extend('keep', opts, {
+            ui = {
+              icons = {
+                package_installed = '✓',
+                package_pending = '➜',
+                package_uninstalled = '✗',
+              },
+            },
+            registries = {
+              'github:nvim-java/mason-registry',
+              'github:mason-org/mason-registry',
+            },
+          })
+          -- ^^^^^ Here we are basically merge you configuration with OPTS
+          -- OPTS contains configurations defined elsewhere like nvim-java
 
--- Skip built in jdtls in favor of the plugin     "mfussenegger/nvim-jdtls",
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "jdtls" })
+          require('mason').setup(conf)
+        end,
+      },
+    },
+
+  },
+}
 
 -- copilot config
 vim.g.copilot_no_tab_map = true

@@ -1,12 +1,3 @@
--- TODO:
--- 1. Add more mappings for java
--- 2. Handle both mavne and gradle (same short cuts?)
--- 3. DAP for java?
--- 4. Auto formatting for XML
---
--- TODO: Checkout for yaml support instead of XML:
--- https://github.com/takari/polyglot-maven?tab=readme-ov-file
-
 local mvnCommand = ""
 
 if (IsWindows()) then
