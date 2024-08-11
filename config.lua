@@ -2,6 +2,8 @@
 1. Install and enable some NerdFont
 2. :Lazy
 3. :checkhealth and fix issues
+
+- <leader>d for DAP
 ]]
 
 require "powershell"
