@@ -400,6 +400,9 @@ lvim.plugins = {
   }
 }
 
+-- Skip built in jdtls in favor of the plugin     "mfussenegger/nvim-jdtls",
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "jdtls" })
+
 -- copilot config
 vim.g.copilot_no_tab_map = true
 vim.g.copilot_assume_mapped = true

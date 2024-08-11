@@ -16,10 +16,10 @@ else
 end
 
 -- Auto compile on save, in order to trigger Spring Boot DevTools Restart
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  pattern = { "*.java", "*.kotlin" },
-  command = "silent exec 'ter " .. mvnCommand .. " compile'",
-})
+-- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+--   pattern = { "*.java", "*.kotlin" },
+--   command = "silent exec 'ter " .. mvnCommand .. " compile'",
+-- })
 
 -- Maven
 lvim.builtin.which_key.mappings["m"] = {
