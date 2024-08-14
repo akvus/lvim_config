@@ -259,9 +259,13 @@ lvim.plugins = {
     end,
   },
   {
+    "rcasia/neotest-java",
+  },
+  {
     "nvim-neotest/neotest",
     dependencies = {
       'sidlatau/neotest-dart',
+      'rcasia/neotest-java',
       "nvim-neotest/nvim-nio",
     },
     config = function()
@@ -335,8 +339,8 @@ lvim.plugins = {
           auto_open = false,   -- if true this will open the outline automatically when it is first populated
         },
         debugger = {
-          enabled = false,
-          run_via_dap = false,
+          enabled = true,
+          run_via_dap = true,
           register_configurations = function(_)
             local dap = require("dap")
             dap.set_log_level("TRACE")
