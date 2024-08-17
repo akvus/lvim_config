@@ -259,14 +259,13 @@ lvim.plugins = {
     end,
   },
   {
-    "rcasia/neotest-java",
-  },
-  {
     "nvim-neotest/neotest",
     dependencies = {
       'sidlatau/neotest-dart',
-      'rcasia/neotest-java',
       "nvim-neotest/nvim-nio",
+      "nvim-lua/plenary.nvim",
+      "antoinemadec/FixCursorHold.nvim",
+      "nvim-treesitter/nvim-treesitter"
     },
     config = function()
       require('neotest').setup({
@@ -275,9 +274,16 @@ lvim.plugins = {
             command = 'fvm flutter',
             use_lsp = true,
           },
+          require("neotest-java") {
+            -- config here
+            ignore_wrapper = false, -- whether to ignore maven/gradle wrapper
+          },
         }
       })
-    end
+    end,
+  },
+  {
+    "rcasia/neotest-java",
   },
   {
     "vim-test/vim-test",
