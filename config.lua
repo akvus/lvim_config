@@ -288,16 +288,6 @@ lvim.plugins = {
   {
     "vim-test/vim-test",
   },
-  -- Plenary is included in LVIM, but it's not getting updated
-  {
-    "nvim-lua/plenary.nvim",
-    -- commit = "8aad439",
-  },
-  -- Telecsope is included in LVIM, but it's not getting updated
-  {
-    "nvim-telescope/telescope.nvim",
-    -- commit = "31ddbea",
-  },
   {
     "akvus/g-worktree.nvim",
   },
