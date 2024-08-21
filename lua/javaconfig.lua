@@ -17,8 +17,8 @@ lvim.builtin.which_key.mappings["m"] = {
 
 -- Gradle
 lvim.builtin.which_key.mappings["r"] = {
-  r = { "<cmd>ter gradle bootRun<cr>", "Run spring boot with gradle" },
-  c = { "<cmd>ter gradle clean<cr>", "Clean" },
-  t = { "<cmd>ter gradle test<cr>", "Test" },
-  T = { "<cmd>ter gradle test<cr>", "Test" },
+  r = { "<cmd>ter ./gradlew bootRun<cr>", "Run spring boot with gradle" },
+  c = { "<cmd>ter ./gradlew clean<cr>", "Clean" },
+  t = { "<cmd>ter ./gradlew test<cr>", "Test" },
+  T = { "<cmd>ter ./gradlew test<cr>", "Test" },
 }
