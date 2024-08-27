@@ -39,6 +39,9 @@ lvim.builtin.which_key.mappings["a"] = {
 
 -- Flutter command line
 lvim.builtin.which_key.mappings["G"] = {
+  r = {
+    "<cmd>ter fvm flutter run<cr>",
+    "Run" },
   d = {
     "<cmd>ter fvm flutter run --flavor development -t lib/main_development.dart --dart-define SENTRY_ENABLED=false<cr>",
     "Run development" },

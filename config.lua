@@ -201,7 +201,7 @@ lvim.builtin.treesitter.highlight.enable = true
 lvim.lsp.installer.setup.ensure_installed = {
   "jsonls",
   "tsserver",
-  "kotlin_language_server",
+  -- "kotlin_language_server",
 }
 
 ---@usage disable automatic installation of servers
