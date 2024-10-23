@@ -1,16 +1,16 @@
 --[[
-based on: https://gist.github.com/Antoniozinchenko/b7e1d3679a88ec4f1b3a3bd6e5b44961
-
 1. Install and enable some NerdFont
 2. :Lazy
 3. :checkhealth and fix issues
+
+- <leader>d for DAP
 ]]
 
 require "powershell"
 require "flutter"
-require "java"
+require "javaconfig"
 
-require 'lspconfig'.kotlin_language_server.setup{}
+require('lspconfig').kotlin_language_server.setup {}
 
 -- SETTINGS
 lvim.log.level = "warn"
@@ -21,7 +21,7 @@ lvim.leader = ","
 -- TODO consider replacing with https://github.com/coffebar/neovim-project since original plugin is no longer maintained
 -- Set what files make a directory root of a project
 -- defaults include other VCSs, Makefile, package.json
-lvim.builtin.project.patterns = { ">Projects", ".git", "pubspec.yaml", "pom.xml" }
+lvim.builtin.project.patterns = { ">Projects", ".git", "pubspec.yaml", "pom.xml", 'gradlew' }
 
 -- nvim-tree
 require("nvim-tree").setup({
@@ -201,7 +201,7 @@ lvim.builtin.treesitter.highlight.enable = true
 lvim.lsp.installer.setup.ensure_installed = {
   "jsonls",
   "tsserver",
-  "kotlin_language_server",
+  -- "kotlin_language_server",
 }
 
 ---@usage disable automatic installation of servers
@@ -263,6 +263,9 @@ lvim.plugins = {
     dependencies = {
       'sidlatau/neotest-dart',
       "nvim-neotest/nvim-nio",
+      "nvim-lua/plenary.nvim",
+      "antoinemadec/FixCursorHold.nvim",
+      "nvim-treesitter/nvim-treesitter"
     },
     config = function()
       require('neotest').setup({
@@ -271,22 +274,19 @@ lvim.plugins = {
             command = 'fvm flutter',
             use_lsp = true,
           },
+          require("neotest-java") {
+            -- config here
+            ignore_wrapper = false, -- whether to ignore maven/gradle wrapper
+          },
         }
       })
-    end
+    end,
+  },
+  {
+    "rcasia/neotest-java",
   },
   {
     "vim-test/vim-test",
-  },
-  -- Plenary is included in LVIM, but it's not getting updated
-  {
-    "nvim-lua/plenary.nvim",
-    -- commit = "8aad439",
-  },
-  -- Telecsope is included in LVIM, but it's not getting updated
-  {
-    "nvim-telescope/telescope.nvim",
-    -- commit = "31ddbea",
   },
   {
     "akvus/g-worktree.nvim",
@@ -335,8 +335,8 @@ lvim.plugins = {
           auto_open = false,   -- if true this will open the outline automatically when it is first populated
         },
         debugger = {
-          enabled = false,
-          run_via_dap = false,
+          enabled = true,
+          run_via_dap = true,
           register_configurations = function(_)
             local dap = require("dap")
             dap.set_log_level("TRACE")
@@ -396,8 +396,63 @@ lvim.plugins = {
     end
   },
   {
-    "mfussenegger/nvim-jdtls",
-  }
+    'nvim-java/nvim-java',
+    config = function()
+      require('java').setup({})
+      require('lspconfig').jdtls.setup({
+        settings = {
+          java = {
+            configuration = {
+              runtimes = {
+                {
+                  name = "JavaSE-21",
+                  path = "/opt/jdk-21",
+                  default = true,
+                }
+              }
+            }
+          }
+        }
+      })
+    end,
+    dependencies = {
+      'nvim-java/lua-async-await',
+      'nvim-java/nvim-java-refactor',
+      'nvim-java/nvim-java-core',
+      'nvim-java/nvim-java-test',
+      'nvim-java/nvim-java-dap',
+      'MunifTanjim/nui.nvim',
+      'neovim/nvim-lspconfig',
+      'mfussenegger/nvim-dap',
+      {
+        'JavaHello/spring-boot.nvim',
+        commit = '218c0c26c14d99feca778e4d13f5ec3e8b1b60f0',
+      },
+      {
+        'williamboman/mason.nvim',
+        config = function(_, opts)
+          local conf = vim.tbl_deep_extend('keep', opts, {
+            ui = {
+              icons = {
+                package_installed = '✓',
+                package_pending = '➜',
+                package_uninstalled = '✗',
+              },
+            },
+            registries = {
+              'github:nvim-java/mason-registry',
+              'github:mason-org/mason-registry',
+            },
+          })
+          -- ^^^^^ Here we are basically merge you configuration with OPTS
+          -- OPTS contains configurations defined elsewhere like nvim-java
+
+          require('mason').setup(conf)
+        end,
+      },
+    },
+
+  },
 }
 
 -- copilot config

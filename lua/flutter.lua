@@ -39,6 +39,9 @@ lvim.builtin.which_key.mappings["a"] = {
 
 -- Flutter command line
 lvim.builtin.which_key.mappings["G"] = {
+  r = {
+    "<cmd>ter fvm flutter run<cr>",
+    "Run" },
   d = {
     "<cmd>ter fvm flutter run --flavor development -t lib/main_development.dart --dart-define SENTRY_ENABLED=false<cr>",
     "Run development" },
@@ -57,6 +60,9 @@ lvim.builtin.which_key.mappings["G"] = {
   wd = {
     "<cmd>ter fvm flutter run --flavor development -t lib/main_development_web_chat.dart --web-port=7331 --web-browser-flag=--disable-web-security --dart-define SENTRY_ENABLED=false<cr>",
     "Run web development" },
+  wr = {
+    "<cmd>ter fvm flutter run -d chrome --web-browser-flag \"--disable-web-security\"<cr>",
+    "Run web, no cors" },
 
   f = { "<cmd>Telescope flutter commands<cr>", "Open Flutter Commans" },
   t = { "<cmd>ter fvm dart format . && fvm dart analyze && fvm flutter test -x integration<cr>", "Test" },
