@@ -7,6 +7,11 @@ function IsWindows()
   return vim.loop.os_uname().sysname == 'Windows_NT';
 end
 
+
+function IsMacOs()
+  return vim.loop.os_uname().sysname == 'Darwin';
+end
+
 if (IsWindows()) then
   -- Defaults that came with LunarVim 1.3
   vim.opt.shell = "pwsh.exe -NoLogo"
