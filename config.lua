@@ -9,7 +9,6 @@
 require "powershell"
 require "flutter"
 require "javaconfig"
-require "java1"
 
 require('lspconfig').kotlin_language_server.setup {}
 
