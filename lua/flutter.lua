@@ -25,16 +25,6 @@ lvim.builtin.which_key.mappings["a"] = {
   t = { "<cmd>FlutterDevTools<cr>", "Start dev tools" },
   q = { "<cmd>FlutterQuit<cr>", "Quit running application" },
   x = { "<cmd>FlutterLogClear<cr>", "Clear log" },
-  D = { "<cmd>FlutterRun --flavor development -t lib/main_development.dart --dart-define SENTRY_ENABLED=false<cr>",
-    "Run development" },
-  P = { "<cmd>FlutterRun --flavor production -t lib/main_production.dart --dart-define SENTRY_ENABLED=false<cr>",
-    "Run production" },
-  S = {
-    "<cmd>FlutterRun --flavor staging -t lib/main_staging.dart --dart-define SENTRY_ENABLED=false<cr>",
-    "Run staging" },
-  SR = {
-    "<cmd>FlutterRun --release --flavor staging -t lib/main_staging.dart --dart-define SENTRY_ENABLED=false<cr>",
-    "Run staging release" },
 }
 
 -- Flutter command line
@@ -43,22 +33,22 @@ lvim.builtin.which_key.mappings["G"] = {
     "<cmd>ter fvm flutter run<cr>",
     "Run" },
   d = {
-    "<cmd>ter fvm flutter run --flavor development -t lib/main_development.dart --dart-define SENTRY_ENABLED=false<cr>",
+    "<cmd>ter fvm flutter run --flavor development -t lib/main_development.dart<cr>",
     "Run development" },
   p = {
-    "<cmd>ter fvm flutter run --flavor production -t lib/main_production.dart --dart-define SENTRY_ENABLED=false<cr>",
+    "<cmd>ter fvm flutter run --flavor production -t lib/main_production.dart<cr>",
     "Run production" },
   P = {
-    "<cmd>ter fvm flutter run --release --flavor production -t lib/main_production.dart --dart-define SENTRY_ENABLED=false<cr>",
+    "<cmd>ter fvm flutter run --release --flavor production -t lib/main_production.dart<cr>",
     "Run production" },
   s = {
-    "<cmd>ter fvm flutter run --flavor staging -t lib/main_staging.dart --dart-define SENTRY_ENABLED=false<cr>",
+    "<cmd>ter fvm flutter run --flavor staging -t lib/main_staging.dart<cr>",
     "Run staging" },
   S = {
-    "<cmd>ter fvm flutter run --release --flavor staging -t lib/main_staging.dart --dart-define SENTRY_ENABLED=false<cr>",
+    "<cmd>ter fvm flutter run --release --flavor staging -t lib/main_staging.dart<cr>",
     "Run staging release" },
   wd = {
-    "<cmd>ter fvm flutter run --flavor development -t lib/main_development_web_chat.dart --web-port=7331 --web-browser-flag=--disable-web-security --dart-define SENTRY_ENABLED=false<cr>",
+    "<cmd>ter fvm flutter run --flavor development -t lib/main_development_web_chat.dart --web-port=7331 --web-browser-flag=--disable-web-security<cr>",
     "Run web development" },
   wr = {
     "<cmd>ter fvm flutter run -d chrome --web-browser-flag \"--disable-web-security\" --web-port 33223<cr>",
