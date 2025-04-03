@@ -49,13 +49,13 @@ lvim.builtin.which_key.mappings["G"] = {
     "Run staging release" },
   wr = {
     "<cmd>ter fvm flutter run --release -t lib/main_development.dart -d chrome --web-browser-flag \"--disable-web-security\" --web-port 33223<cr>",
-    "Run web, no cors" },
+    "Run web release, no cors" },
   wp = {
-    "<cmd>ter fvm flutter run --profile -t lib/main_development.dart -d chrome --web-browser-flag \"--disable-web-security\" --web-port 33223<cr>",
+    "<cmd>ter fvm flutter run --profile --source-maps -t lib/main_development.dart -d chrome --web-browser-flag \"--disable-web-security\" --web-port 33223 --dart-define=TEST_RUN=true<cr>",
     "Run web profile, no cors" },
   wd = {
     "<cmd>ter fvm flutter run -t lib/main_development.dart -d chrome --web-browser-flag \"--disable-web-security\" --web-port 33223<cr>",
-    "Run web release, no cors" },
+    "Run web debug, no cors" },
 
   f = { "<cmd>Telescope flutter commands<cr>", "Open Flutter Commans" },
   t = { "<cmd>ter fvm dart format . && fvm dart analyze && fvm flutter test -x integration<cr>", "Test" },
