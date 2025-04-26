@@ -48,18 +48,19 @@ lvim.builtin.which_key.mappings["G"] = {
     "<cmd>ter fvm flutter run --release --flavor staging -t lib/main_staging.dart<cr>",
     "Run staging release" },
   wr = {
-    "<cmd>ter fvm flutter run --release -t lib/main_development.dart -d chrome --web-browser-flag \"--disable-web-security\" --web-port 33223 --dart-define=TEST_RUN=true<cr>",
+    "<cmd>ter fvm flutter run --release -t lib/main_development.dart -d chrome --web-browser-flag \"--disable-web-security\" --web-port 33223 --dds-port 33224<cr>",
     "Run web release, no cors" },
   wp = {
-    "<cmd>ter fvm flutter run --profile -t lib/main_development.dart -d chrome --web-browser-flag \"--disable-web-security\" --web-port 33223 --dart-define=TEST_RUN=true<cr>",
+    "<cmd>ter fvm flutter run --profile -t lib/main_development.dart -d chrome --web-browser-flag \"--disable-web-security\" --web-port 33223 --dds-port 33224<cr>",
     "Run web profile, no cors" },
   wd = {
-    "<cmd>ter fvm flutter run -t lib/main_development.dart -d chrome --web-browser-flag \"--disable-web-security\" --web-port 33223<cr>",
+    "<cmd>ter fvm flutter run -t lib/main_development.dart -d chrome --web-browser-flag \"--disable-web-security\" --web-port 33223 --dds-port 33224<cr>",
     "Run web debug, no cors" },
 
   f = { "<cmd>Telescope flutter commands<cr>", "Open Flutter Commans" },
   t = { "<cmd>ter fvm dart format . && fvm dart analyze && fvm flutter test -x integration<cr>", "Test" },
   b = { "<cmd>ter fvm flutter pub run build_runner build -d<cr>", "Run build runner" },
+  bw = { "<cmd>ter fvm flutter pub run build_runner watch -d<cr>", "Run build runner watcher" },
   g = { "<cmd>ter fvm flutter pub get<cr>", "Pub get" },
   c = { "<cmd>ter fvm flutter clean<cr>", "Flutter clean" },
   v = { "<cmd>Telescope flutter fvm<cr>", "Flutter version" },
